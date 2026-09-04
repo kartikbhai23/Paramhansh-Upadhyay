@@ -22,11 +22,15 @@ python3 -m http.server 8000
 Then open `http://localhost:8000/admin/index.html` to edit, and `http://localhost:8000/index.html` to view the public site — in the **same browser**, since this prototype has no real backend/database and data lives only in that browser's storage.
 
 ## What's included in the admin panel
-- Profile: name, designation, tagline, years of experience, biography, social links, and a **profile photo** upload (shown in the hero section).
+- Profile: name, designation, tagline, years of experience, biography ("Who I Am" on the site), social links, and a **profile photo** upload (shown in the hero section).
+- Education: qualification, institution, degree/specialization, year, description, and a display-order number — shown as a timeline on the public About section.
+- Experience: job/position, organization, start year, end year (or "Present"), description, and a display-order number — shown as a timeline on the public About section.
 - Settings: site title, email, phone, office address, footer text, a **site logo** upload (shown in the header), and a **Google Map** — either auto-generated from the office address, or a precise embed link pasted from Google Maps → Share → Embed a map.
 - Practice Areas, Case Studies, Articles, Testimonials: full add/edit/delete, all rendered live on the public site.
 - Media Library: general image uploads.
 - Messages: enquiries submitted through the public contact form appear here.
+
+Note: the "Total Cases" stat shown on the public About section isn't a separate field — it's automatically counted from however many Case Studies you've added, so it always stays accurate without extra data entry. For both Education and Experience, use the "Display order" field to control which entry shows first (lower number = shown first); if left blank, items just appear in the order they were added.
 
 ## Social profiles
 Facebook: https://www.facebook.com/ParamIAS700

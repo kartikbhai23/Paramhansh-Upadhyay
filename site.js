@@ -2,7 +2,7 @@
 const KEY='paramhanshCMS';
 const defaults={
  profile:{name:'Paramhansh Upadhyay',designation:'Advocate',tagline:'',experience:'',bio:'',photo:'',facebook:'https://www.facebook.com/ParamIAS700',instagram:'https://www.instagram.com/paramhanshupadhyay/',youtube:'https://www.youtube.com/@paramhanshupadhyay',twitter:'',linkedin:''},
- practice:[],cases:[],articles:[],testimonials:[],media:[],messages:[],
+ practice:[],cases:[],articles:[],testimonials:[],education:[],experience:[],stats:[{value:'24/7',label:'Client Support',description:'Communicates accessibility',order:'1'}],media:[],messages:[],
  settings:{title:'Paramhansh Upadhyay | Advocate',email:'',phone:'',address:'',footer:'',logo:'',mapEmbed:''},
  activity:[]
 };
@@ -54,9 +54,28 @@ function render(){
 
  // About
  const bioEl=document.getElementById('aboutBio');
- if(bioEl && p.bio) bioEl.textContent=p.bio;
+ if(bioEl && p.bio){
+  const paras=p.bio.split(/\n\s*\n/).map(t=>t.trim()).filter(Boolean);
+  bioEl.innerHTML=(paras.length?paras:[p.bio]).map(t=>`<p>${esc(t)}</p>`).join('');
+ }
  const expEl=document.getElementById('aboutExperience');
  if(expEl) expEl.textContent=p.experience?(p.experience+'+'):'—';
+ const casesEl=document.getElementById('aboutCases');
+ if(casesEl) casesEl.textContent=data.cases.length?(data.cases.length+'+'):'0';
+
+ function sortByOrder(arr){
+  return [...arr].sort((a,b)=>{
+   const ao=(a.order!==undefined&&a.order!==''&&!isNaN(a.order))?Number(a.order):9999;
+   const bo=(b.order!==undefined&&b.order!==''&&!isNaN(b.order))?Number(b.order):9999;
+   return ao-bo;
+  });
+ }
+ const statsExtra=document.getElementById('statsExtra');
+ if(statsExtra){
+  statsExtra.innerHTML=sortByOrder(data.stats).map(x=>`<div class="stat-card"><strong>${esc(x.value||'')}</strong><span>${esc(x.label||'')}</span>${x.description?`<small>${esc(x.description)}</small>`:''}</div>`).join('');
+ }
+ fillGrid('educationTimeline',sortByOrder(data.education),x=>`<div class="t-item">${x.year?`<span class="t-year">${esc(x.year)}</span>`:''}<h4>${esc(x.qualification||'Untitled')}</h4>${(x.institution||x.degree)?`<p class="t-sub">${esc([x.institution,x.degree].filter(Boolean).join(' — '))}</p>`:''}${x.description?`<p class="t-desc">${esc(x.description)}</p>`:''}</div>`);
+ fillGrid('experienceTimeline',sortByOrder(data.experience),x=>`<div class="t-item">${(x.startYear||x.endYear)?`<span class="t-year">${esc(x.startYear||'')} – ${esc(x.endYear||'Present')}</span>`:''}<h4>${esc(x.position||'Untitled')}</h4>${x.organization?`<p class="t-sub">${esc(x.organization)}</p>`:''}${x.description?`<p class="t-desc">${esc(x.description)}</p>`:''}</div>`);
 
  // Practice / cases / articles / testimonials — only override defaults if CMS has entries
  fillGrid('practiceGrid',data.practice,(x,i)=>`<article><b>${String(i+1).padStart(2,'0')}</b><h3>${esc(x.title||'Untitled')}</h3><p>${esc(x.description||'')}</p></article>`);
