@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Paramhansh Upadhyay — Advocate CMS</title><link rel="stylesheet" href="admin.css">
+</head>
+<body>
+<aside class="sidebar">
+  <div class="logo">PU<small>ADVOCATE CMS</small></div>
+  <nav id="nav">
+    <button class="nav-item active" data-section="dashboard">Dashboard</button>
+    <button class="nav-item" data-section="profile">Profile</button>
+    <button class="nav-item" data-section="practice">Practice Areas</button>
+    <button class="nav-item" data-section="cases">Case Studies</button>
+    <button class="nav-item" data-section="articles">Articles</button>
+    <button class="nav-item" data-section="testimonials">Testimonials</button>
+    <button class="nav-item" data-section="media">Media Library</button>
+    <button class="nav-item" data-section="messages">Messages</button>
+    <button class="nav-item" data-section="settings">Settings</button>
+  </nav>
+  <a class="view-site" href="../index.html" target="_blank">View Website ↗</a>
+</aside>
+<main>
+<header><div><small>ADMIN DASHBOARD</small><h1 id="pageTitle">Good afternoon, Paramhansh</h1></div><div class="header-actions"><span class="saved" id="saveStatus">● Local changes saved</span><button class="admin-btn">Admin ▾</button></div></header>
+
+<section id="dashboard" class="page active-page">
+  <div class="stats"><div><span>Published Articles</span><b id="statArticles">0</b></div><div><span>Case Studies</span><b id="statCases">0</b></div><div><span>Testimonials</span><b id="statTestimonials">0</b></div><div><span>Enquiries</span><b id="statMessages">0</b></div></div>
+  <div class="grid"><div class="panel"><h2>Quick actions</h2><div class="actions"><button data-go="articles">＋ New Article</button><button data-go="cases">＋ Add Case Study</button><button data-go="practice">＋ Add Practice Area</button><button data-go="media">＋ Upload Media</button></div></div><div class="panel"><h2>Website profile</h2><p><strong id="dashName">Paramhansh Upadhyay</strong></p><p class="muted" id="dashDesignation">Advocate</p><p class="muted">Edit your website content from the sections in the left sidebar. Changes are saved in this browser.</p></div></div>
+  <div class="panel"><h2>Recent activity</h2><div class="empty" id="activity">No activity yet. Your edits will appear here.</div></div>
+</section>
+
+<section id="profile" class="page"><div class="panel"><div class="section-head"><div><small>WEBSITE PROFILE</small><h2>Professional information</h2></div><button class="primary" id="saveProfile">Save Profile</button></div>
+  <div class="photo-row">
+    <div class="photo-preview" id="pPhotoPreview"><span>No photo</span></div>
+    <div class="photo-actions">
+      <label class="upload-btn">＋ Upload Photo<input id="pPhotoUpload" type="file" accept="image/*" hidden></label>
+      <button class="admin-btn" id="pPhotoRemove" type="button">Remove Photo</button>
+      <p class="hint">This photo replaces the "PU" placeholder in the website hero section. Square images work best.</p>
+    </div>
+  </div>
+  <div class="form-grid"><label>Full name<input id="pName" value="Paramhansh Upadhyay"></label><label>Designation<input id="pDesignation" value="Advocate"></label><label>Tagline<input id="pTagline" placeholder="Professional legal representation and strategic counsel"></label><label>Years of experience<input id="pExperience" type="number" min="0" placeholder="e.g. 12"></label><label class="full">Biography<textarea id="pBio" rows="6" placeholder="Professional biography..."></textarea></label><label>Facebook<input id="pFacebook" value="https://www.facebook.com/ParamIAS700"></label><label>Instagram<input id="pInstagram" value="https://www.instagram.com/paramhanshupadhyay/"></label><label>YouTube<input id="pYoutube" value="https://www.youtube.com/@paramhanshupadhyay"></label><label>Twitter / X<input id="pTwitter" placeholder="https://x.com/yourhandle"></label><label>LinkedIn<input id="pLinkedin" placeholder="https://linkedin.com/in/yourprofile"></label></div></div></section>
+
+<section id="practice" class="page"><div class="panel"><div class="section-head"><div><small>PRACTICE AREAS</small><h2>Manage legal services</h2></div><button class="primary" id="addPractice">＋ Add Practice Area</button></div><div id="practiceList" class="content-list"></div></div></section>
+<section id="cases" class="page"><div class="panel"><div class="section-head"><div><small>CASE STUDIES</small><h2>Manage selected matters</h2></div><button class="primary" id="addCase">＋ Add Case Study</button></div><div id="caseList" class="content-list"></div></div></section>
+<section id="articles" class="page"><div class="panel"><div class="section-head"><div><small>LEGAL ARTICLES</small><h2>Publish professional content</h2></div><button class="primary" id="addArticle">＋ New Article</button></div><div id="articleList" class="content-list"></div></div></section>
+<section id="testimonials" class="page"><div class="panel"><div class="section-head"><div><small>TESTIMONIALS</small><h2>Manage client feedback</h2></div><button class="primary" id="addTestimonial">＋ Add Testimonial</button></div><div id="testimonialList" class="content-list"></div></div></section>
+<section id="media" class="page"><div class="panel"><div class="section-head"><div><small>MEDIA LIBRARY</small><h2>Upload website images</h2></div><label class="upload-btn">＋ Upload Image<input id="mediaUpload" type="file" accept="image/*" multiple hidden></label></div><div id="mediaList" class="media-grid"><div class="empty">No media uploaded yet.</div></div></div></section>
+<section id="messages" class="page"><div class="panel"><div class="section-head"><div><small>CONTACT ENQUIRIES</small><h2>Visitor messages</h2></div></div><div id="messageList" class="content-list"><div class="empty">No enquiries yet. Website contact-form submissions will appear here after backend integration.</div></div></div></section>
+<section id="settings" class="page">
+  <div class="panel"><div class="section-head"><div><small>SITE LOGO</small><h2>Header &amp; branding</h2></div></div>
+    <div class="photo-row">
+      <div class="logo-preview" id="sLogoPreview"><span>P<i>U</i></span></div>
+      <div class="photo-actions">
+        <label class="upload-btn">＋ Upload Logo<input id="sLogoUpload" type="file" accept="image/*" hidden></label>
+        <button class="admin-btn" id="sLogoRemove" type="button">Remove Logo</button>
+        <p class="hint">Replaces the "PU" text logo in the site header. Transparent PNG recommended.</p>
+      </div>
+    </div>
+  </div>
+  <div class="panel"><div class="section-head"><div><small>WEBSITE SETTINGS</small><h2>General settings</h2></div><button class="primary" id="saveSettings">Save Settings</button></div><div class="form-grid"><label>Website title<input id="sTitle" value="Paramhansh Upadhyay | Advocate"></label><label>Primary email<input id="sEmail" type="email" placeholder="office@example.com"></label><label>Phone<input id="sPhone" placeholder="+91 ..."></label><label>Office address<input id="sAddress" placeholder="Office address, city, state"></label><label class="full">Footer text<textarea id="sFooter" rows="3" placeholder="Professional legal representation..."></textarea></label></div></div>
+  <div class="panel"><div class="section-head"><div><small>GOOGLE MAP</small><h2>Office location</h2></div></div>
+    <div class="form-grid">
+      <label class="full">Google Maps embed link (optional)<input id="sMapEmbed" placeholder="Paste link from Google Maps → Share → Embed a map"></label>
+      <p class="hint full">If left blank, the map on the website is generated automatically from the Office address above. For a precise pin, open Google Maps, search your office, choose Share → Embed a map, and paste the link here.</p>
+    </div>
+    <div class="map-preview" id="sMapPreview"></div>
+  </div>
+</section>
+</main>
+<div id="modal" class="modal hidden"><div class="modal-box"><button class="close" id="closeModal">×</button><div id="modalContent"></div></div></div>
+<script src="admin.js"></script>
+</body></html>
