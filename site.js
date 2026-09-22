@@ -2,7 +2,7 @@
 const KEY='paramhanshCMS';
 const defaults={
  profile:{name:'Paramhansh Upadhyay',designation:'Advocate',tagline:'',experience:'',bio:'',photo:'',facebook:'https://www.facebook.com/ParamIAS700',instagram:'https://www.instagram.com/paramhanshupadhyay/',youtube:'https://www.youtube.com/@paramhanshupadhyay',twitter:'',linkedin:''},
- practice:[],cases:[],articles:[],testimonials:[],education:[],experience:[],stats:[{value:'24/7',label:'Client Support',description:'Communicates accessibility',order:'1'}],media:[],messages:[],
+ practice:[],cases:[],articles:[],testimonials:[],team:[],education:[],experience:[],stats:[{value:'24/7',label:'Client Support',description:'Communicates accessibility',order:'1'}],media:[],messages:[],
  settings:{title:'Paramhansh Upadhyay | Advocate',email:'',phone:'',address:'',footer:'',logo:'',mapEmbed:''},
  activity:[]
 };
@@ -82,6 +82,7 @@ function render(){
  fillGrid('caseGrid',data.cases,(x,i)=>`<div class="case"><span>CASE ${String(i+1).padStart(2,'0')}</span><h3>${esc(x.title||'Untitled')}</h3><p>${esc(x.description||'')}</p></div>`);
  fillGrid('articleGrid',data.articles,(x)=>`<article><span>ARTICLE</span><h3>${esc(x.title||'Untitled')}</h3><p>${esc(x.description||'')}</p><a href="#contact">Read more →</a></article>`);
  fillGrid('testimonialGrid',data.testimonials,(x)=>`<div class="case"><span>TESTIMONIAL</span><p>“${esc(x.description||'')}”</p><h3>— ${esc(x.title||'Client')}</h3></div>`);
+ fillGrid('teamGrid',data.team,(x)=>`<article>${x.photo?`<img class="team-photo" src="${esc(x.photo)}" alt="${esc(x.title||'Team member')}">`:''}<span>${esc(x.role||'TEAM MEMBER')}</span><h3>${esc(x.title||'Team Member')}</h3><p>${esc(x.description||'')}</p></article>`);
 
  // Contact info — icon cards
  const icons={
