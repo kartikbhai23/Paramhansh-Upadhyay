@@ -1,80 +1,636 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title id="metaTitle">Paramhansh Upadhyay | Advocate</title>
-<meta name="description" content="Paramhansh Upadhyay — Advocate. Professional legal representation and consultation.">
-<link rel="stylesheet" href="styles.css">
-<script>(function(){try{var t=localStorage.getItem('paramhanshTheme');if(t==='light')document.documentElement.setAttribute('data-theme','light');}catch(e){}})();</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="metaTitle">Safar Legal Trust | Legal Education, Mentorship & Practical Training</title>
+  <meta name="description" content="Safar Legal Trust is an Indian legal and social trust founded by Adv. Paramhansh Upadhyay, dedicated to mentoring law students and young advocates through intensive practical training, court exposure, and constitutional literacy.">
+  <meta name="keywords" content="Safar Legal Trust, Adv Paramhansh Upadhyay, Legal Mentorship, Law Student Training, Legal Drafting, Practical Legal Education, Courtroom Training, India Law">
+  <meta property="og:title" content="Safar Legal Trust | Empowering Law. Inspiring Change.">
+  <meta property="og:description" content="Guiding, training, and mentoring aspiring advocates and law students with real-world courtroom exposure and practical legal skills.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/hero-courtroom.jpg">
+  <link rel="stylesheet" href="styles.css">
+  <script>
+    (function(){
+      try {
+        var t = localStorage.getItem('paramhanshTheme') || 'light';
+        document.documentElement.setAttribute('data-theme', t);
+      } catch(e) {}
+    })();
+  </script>
 </head>
 <body>
-<header class="nav"><a class="brand" id="siteLogo" href="#home">P<span>U</span></a><nav><a href="#practice">Practice Areas</a><a href="#cases">Case Studies</a><a href="#articles">Articles</a><a href="#testimonials">Testimonials</a><a href="#team">Team</a><a href="#contact">Contact</a></nav><div class="nav-right"><button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark and light theme"><svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/></svg></button><a class="nav-cta" href="#contact">Consultation</a></div></header>
-<main>
+<a href="#main" class="skip-link">Skip to main institutional content</a>
 
-<section id="home" class="hero section">
-  <div class="hero-copy"><p class="eyebrow">ADVOCATE • LEGAL CONSULTANT</p><h1 id="heroName">PARAMHANSH<br><span>UPADHYAY</span></h1><p class="lead" id="heroTagline">Professional legal representation, strategic counsel and client-focused advocacy.</p><div class="actions"><a class="btn primary" href="#contact">Book a Consultation</a><a class="btn ghost" href="#practice">Explore Practice Areas</a></div></div>
-  <div class="portrait"><div class="portrait-placeholder" id="heroPortrait">PU</div></div>
-</section>
-
-<section id="practice" class="section"><p class="eyebrow">PRACTICE AREAS</p><h2>Legal expertise</h2>
-  <div class="cards" id="practiceGrid">
-    <article><b>01</b><h3>Criminal Law</h3><p>Professional legal assistance and representation. Detailed service information can be updated from the dashboard.</p></article>
-    <article><b>02</b><h3>Civil Litigation</h3><p>Strategic advice and representation for civil disputes and proceedings.</p></article>
-    <article><b>03</b><h3>Legal Consultation</h3><p>Confidential consultation focused on understanding issues and identifying practical legal options.</p></article>
-  </div>
-</section>
-
-<section id="cases" class="section dark"><p class="eyebrow">TOP CASE STUDIES</p><h2>Selected matters</h2>
-  <div class="case-grid" id="caseGrid">
-    <div class="case"><span>CASE 01</span><h3>Case study title</h3><p>Case details and outcome will be added by the administrator.</p></div>
-    <div class="case"><span>CASE 02</span><h3>Case study title</h3><p>Case details and outcome will be added by the administrator.</p></div>
-    <div class="case"><span>CASE 03</span><h3>Case study title</h3><p>Case details and outcome will be added by the administrator.</p></div>
-  </div>
-</section>
-
-<section id="articles" class="section"><p class="eyebrow">LEGAL ARTICLES</p><h2>Insights &amp; updates</h2>
-  <div class="cards articles" id="articleGrid">
-    <article><span>ARTICLE</span><h3>Legal insights coming soon</h3><p>Articles published from the admin dashboard will appear here automatically.</p><a href="#contact">Read more →</a></article>
-    <article><span>ARTICLE</span><h3>Know your legal rights</h3><p>Content can be managed without changing website code.</p><a href="#contact">Read more →</a></article>
-    <article><span>ARTICLE</span><h3>Professional updates</h3><p>Use the CMS to publish new professional updates whenever required.</p><a href="#contact">Read more →</a></article>
-  </div>
-</section>
-
-<section id="testimonials" class="section dark"><p class="eyebrow">CLIENT FEEDBACK</p><h2>What clients say</h2>
-  <div class="case-grid" id="testimonialGrid">
-    <div class="case"><span>TESTIMONIAL</span><p>Client testimonials added from the admin dashboard will appear here.</p><h3>—</h3></div>
-  </div>
-</section>
-
-<section id="team" class="section"><p class="eyebrow">OUR TEAM</p><h2>Meet the team</h2>
-  <div class="cards" id="teamGrid">
-    <article><span>TEAM MEMBER</span><h3>Our legal team</h3><p>Team member profiles added from the admin dashboard will appear here.</p></article>
-  </div>
-</section>
-
-<section id="contact" class="section contact">
-  <div>
-    <p class="eyebrow">CONTACT</p><h2>Let's discuss your legal matter.</h2>
-    <p id="contactIntro">Phone, email, office address and consultation details can be added later.</p>
-    <div class="contact-info" id="contactInfo"></div>
-    <div class="map-embed" id="mapEmbed"></div>
-  </div>
-  <div class="contact-right">
-    <form id="contactForm" class="contact-card">
-      <div class="form-head"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M2 21l21-9L2 3v7l15 2-15 2z"/></svg><h3>Send a Message</h3></div>
-      <div class="form-row">
-        <label>Full Name<input id="cfName" placeholder="Your name" required></label>
-        <label>Email<input id="cfEmail" type="email" placeholder="you@email.com" required></label>
+<!-- ========== HEADER ========== -->
+<header class="header" id="siteHeader">
+  <div class="container header__inner">
+    <a class="header__brand" id="siteLogo" href="#home">
+      <div class="brand-crest" aria-hidden="true">§</div>
+      <div class="brand-text">
+        <span class="brand-title">SAFAR LEGAL TRUST</span>
+        <span class="brand-subtitle">Adv. Paramhansh Upadhyay, Founder</span>
       </div>
-      <label class="full">Phone Number<input id="cfPhone" placeholder="Your phone number"></label>
-      <label class="full">Message<textarea id="cfMessage" placeholder="Briefly describe your matter" rows="5"></textarea></label>
-      <button class="btn primary send-btn" type="submit"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M2 21l21-9L2 3v7l15 2-15 2z"/></svg>Send Enquiry</button>
-    </form>
-    <div class="socials" id="socials"><a href="https://www.facebook.com/ParamIAS700" target="_blank">Facebook</a><a href="https://www.instagram.com/paramhanshupadhyay/" target="_blank">Instagram</a><a href="https://www.youtube.com/@paramhanshupadhyay" target="_blank">YouTube</a></div>
+    </a>
+
+    <nav class="header__nav" id="mainNav" aria-label="Primary Navigation">
+      <a href="#home" class="nav-link is-active">Home</a>
+      <a href="#about" class="nav-link">About Trust</a>
+      <a href="#purpose" class="nav-link">The Purpose</a>
+      <a href="#founder" class="nav-link">Founder</a>
+      <a href="#articles" class="nav-link">Articles</a>
+      <a href="#gallery" class="nav-link">Gallery</a>
+      <a href="#contact" class="nav-link">Contact</a>
+    </nav>
+
+    <div class="header__actions">
+      <button class="theme-toggle-btn" id="themeToggle" type="button" aria-label="Toggle light/dark theme" title="Toggle Theme">
+        <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/>
+        </svg>
+      </button>
+      <a class="btn btn--primary btn--sm" href="#admissions" id="navCta">Apply / Enquire</a>
+      <button class="mobile-nav-toggle" id="mobileMenuBtn" type="button" aria-label="Toggle navigation menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
   </div>
-</section>
+</header>
+
+<!-- ========== MAIN ========== -->
+<main id="main">
+
+  <!-- ========== HERO SECTION ========== -->
+  <section id="home" class="hero section">
+    <div class="container">
+      <div class="hero__grid">
+        <div class="hero__content">
+          <span class="label-institutional">LEGAL TRUST & ADVOCACY ACADEMY</span>
+          <h1 id="heroHeadline">Empowering the Next Generation of Legal Professionals.</h1>
+          <p class="hero__lead" id="heroTagline">
+            Safar Legal Trust is dedicated to creating awareness, opportunity, and structured mentorship for law students, young advocates, and communities across India.
+          </p>
+          <div class="hero__cta-group">
+            <a class="btn btn--primary" href="#programs">Explore Our Programs</a>
+            <a class="btn btn--outline" href="#about">Learn About the Trust</a>
+          </div>
+
+          <!-- Four Pillars Bar -->
+          <div class="pillars-bar" id="pillarsBar" aria-label="Four Core Pillars">
+            <div class="pillar-item">
+              <span class="pillar-item__name">Knowledge</span>
+            </div>
+            <div class="pillar-item">
+              <span class="pillar-item__name">Justice</span>
+            </div>
+            <div class="pillar-item">
+              <span class="pillar-item__name">Opportunity</span>
+            </div>
+            <div class="pillar-item">
+              <span class="pillar-item__name">Social Impact</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero__visual">
+          <div class="hero-double-frame">
+            <div class="hero-frame-inner">
+              <img src="assets/hero-courtroom.jpg" alt="Chambers and Courtroom of Safar Legal Trust" id="heroCourtImg">
+            </div>
+            <div class="hero-badge-overlay">
+              <img src="assets/paramhansh-upadhyay.png" alt="Adv. Paramhansh Upadhyay" class="hero-badge-avatar">
+              <div>
+                <div class="hero-badge-title">Adv. Paramhansh Upadhyay</div>
+                <div class="hero-badge-role">Advocate & Founder, Safar Legal Trust</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== ANNOUNCEMENTS MARQUEE ========== -->
+  <section class="marquee-section" id="marqueeSection" aria-label="Announcements">
+    <div class="marquee-container" id="marqueeContainer">
+      <div class="marquee-content" id="marqueeTrack1">
+        <span>🚨 Admissions Open for Chamber Mentorship Program 2026!</span>
+        <span class="marquee-separator">•</span>
+        <span>Upcoming Constitutional Literacy Camp in Delhi</span>
+        <span class="marquee-separator">•</span>
+        <span>Register for Drafting & Pleadings Intensive Workshop</span>
+        <span class="marquee-separator">•</span>
+      </div>
+      <div class="marquee-content" id="marqueeTrack2" aria-hidden="true">
+        <span>🚨 Admissions Open for Chamber Mentorship Program 2026!</span>
+        <span class="marquee-separator">•</span>
+        <span>Upcoming Constitutional Literacy Camp in Delhi</span>
+        <span class="marquee-separator">•</span>
+        <span>Register for Drafting & Pleadings Intensive Workshop</span>
+        <span class="marquee-separator">•</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== ABOUT THE TRUST SECTION ========== -->
+  <section id="about" class="section section--alt">
+    <div class="container">
+      <div class="about-trust__grid">
+        <div class="about-trust__narrative narrative-block">
+          <span class="label-institutional">THE INSTITUTION</span>
+          <h2>A Trust Founded on Principle, Purpose, and Advocacy.</h2>
+          <p>
+            <strong>Safar Legal Trust</strong> is a legal and social organisation dedicated to creating awareness, opportunity, and support for law students, young legal professionals, and communities across India. Founded by <strong>Adv. Paramhansh Upadhyay</strong>, the Trust serves as a crucible where theoretical jurisprudence transforms into practical advocacy.
+          </p>
+          <p>
+            Through structured mentorship, chamber labs, and direct courtroom observation, the Trust provides aspiring legal minds with the ethical foundation and procedural competence required to serve the justice delivery system with confidence.
+          </p>
+
+          <div class="vision-banner">
+            <blockquote id="visionStatement">
+              “To build a stronger and more inclusive legal community where knowledge of law becomes a tool for empowerment and positive social change.”
+            </blockquote>
+            <cite id="visionSlogan">Join the Safar. Shape the Future.</cite>
+          </div>
+
+        </div>
+
+        <div class="about-trust__sidebar">
+          <div class="hero-double-frame" style="margin-bottom: 24px;">
+            <div class="hero-frame-inner" style="aspect-ratio: 4 / 3;">
+              <img src="assets/gallery-library.jpg" alt="Law Library and Legal Research Study Hall" id="aboutTrustImg">
+            </div>
+          </div>
+
+          <!-- Institutional Metrics -->
+          <div class="trust-metrics" id="statsRow">
+            <div class="metric-cell">
+              <div class="metric-number">10,000+</div>
+              <div class="metric-label">Students & Citizens Reached Across Workshops</div>
+            </div>
+            <div class="metric-cell">
+              <div class="metric-number">Pan-India</div>
+              <div class="metric-label">Active Youth & Young Advocate Network</div>
+            </div>
+            <div class="metric-cell">
+              <div class="metric-number">4 Pillars</div>
+              <div class="metric-label">Knowledge • Justice • Opportunity • Impact</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== THE FOUR PILLARS ========== -->
+  <section id="pillars" class="section section--surface">
+    <div class="container">
+      <div class="section-head section-head--center" style="max-width: 800px;">
+        <span class="label-institutional" id="pillarsEyebrow">CORE FOUNDATION</span>
+        <h2 id="pillarsHeading">The Four Pillars</h2>
+        <p class="section-lead" id="pillarsLead">
+          The guiding principles that shape the vision and initiatives of Safar Legal Trust.
+        </p>
+      </div>
+
+      <div class="pillars-grid" id="pillarsGrid">
+        <div class="continuum-card">
+          <span class="continuum-step">Pillar 01</span>
+          <h3>Knowledge</h3>
+          <p>
+            Promoting constitutional literacy, rigorous legal research, and making legal awareness accessible to citizens across all levels of society.
+          </p>
+        </div>
+
+        <div class="continuum-card">
+          <span class="continuum-step">Pillar 02</span>
+          <h3>Justice</h3>
+          <p>
+            Ensuring ethical, accessible legal support and advocating for the vulnerable through robust courtroom representation.
+          </p>
+        </div>
+
+        <div class="continuum-card">
+          <span class="continuum-step">Pillar 03</span>
+          <h3>Opportunity</h3>
+          <p>
+            Bridging the gap between theory and practice through structured mentorship, chamber exposure, and trial advocacy training.
+          </p>
+        </div>
+
+        <div class="continuum-card">
+          <span class="continuum-step">Pillar 04</span>
+          <h3>Social Impact</h3>
+          <p>
+            Empowering communities through legal aid clinics, grassroots workshops, and driving meaningful change in the justice system.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ========== PRACTICE AREAS (CMS-managed) ========== -->
+  <section id="purpose" class="section">
+    <div class="container">
+      <div class="section-head section-head--center" style="max-width: 820px;">
+        <span class="label-institutional" id="practiceEyebrow">OUR SERVICES</span>
+        <h2 id="practiceHeading">Practice Areas</h2>
+        <p class="section-lead" id="practiceLead">
+          Core focus areas of Safar Legal Trust &mdash; from mentorship and legal aid to community outreach and digital awareness.
+        </p>
+      </div>
+      <div class="practical-grid" id="practiceGrid">
+        <!-- Dynamically rendered from CMS -->
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ========== FOUNDER / ADVOCATE SECTION ========== -->
+  <section id="founder" class="section section--surface">
+    <div class="container">
+      <div class="founder-profile">
+        <div class="founder-frame">
+          <img src="assets/paramhansh-upadhyay.png" alt="Adv. Paramhansh Upadhyay — Advocate & Founder, Safar Legal Trust" id="founderHeroImg">
+        </div>
+        <div class="founder-info">
+          <span class="label-institutional">LEADERSHIP & MENTORSHIP</span>
+          <h2 id="founderNameHeading">Adv. Paramhansh Upadhyay</h2>
+          <span class="founder-designation" id="founderRoleTag">Advocate & Founder, Safar Legal Trust</span>
+          
+          <div class="founder-bio" id="aboutBio">
+            <p>
+              Adv. Paramhansh Upadhyay is the Founder of Safar Legal Trust, an organisation committed to promoting legal awareness, education, justice, and social empowerment. Through the Trust, he aims to create meaningful opportunities for law students, young advocates, and communities to understand their rights and responsibilities.
+            </p>
+            <p>
+              His vision is to build a strong network of legal minds that can contribute towards a more informed, accessible, and responsible society. With a focus on knowledge, advocacy, and community development, Adv. Paramhansh Upadhyay seeks to bridge the gap between law and society.
+            </p>
+          </div>
+
+          <div class="founder-quote">
+            “The practice of law is an intellectual calling and a solemn public trust. Our objective at Safar is to ensure that no aspiring advocate is left to navigate the complexities of court practice without guidance, ethics, and practical support.”
+          </div>
+
+          <div class="founder-social-row" id="founderSocialLinks">
+            <a class="founder-social-link" href="https://www.facebook.com/ParamIAS700" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-7h2.4l.4-3H13.5V9c0-.87.24-1.46 1.5-1.46H16.5V5.1c-.27-.04-1.2-.11-2.28-.11-2.26 0-3.8 1.38-3.8 3.9V11H8v3h2.42v7h3.08z"/></svg>
+              Facebook
+            </a>
+            <a class="founder-social-link" href="https://www.instagram.com/paramhanshupadhyay/" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg>
+              Instagram
+            </a>
+            <a class="founder-social-link" href="https://www.youtube.com/@paramhanshupadhyay" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 8.4s-.2-1.5-.8-2.1c-.8-.8-1.7-.8-2.1-.9C16.4 5.2 12 5.2 12 5.2h0s-4.4 0-7.1.2c-.4 0-1.3.1-2.1.9C2.2 6.9 2 8.4 2 8.4S1.8 10.2 1.8 12v1.9c0 1.8.2 3.6.2 3.6s.2 1.5.8 2.1c.8.8 1.8.8 2.3.9 1.7.2 7 .2 7 .2s4.4 0 7.1-.2c.4-.1 1.3-.1 2.1-.9.6-.6.8-2.1.8-2.1s.2-1.8.2-3.6V12c0-1.8-.2-3.6-.2-3.6z"/><path d="M9.9 15.4V9.6l5.4 2.9-5.4 2.9z" fill="var(--surface)"/></svg>
+              YouTube
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== TEAM SECTION ========== -->
+  <section id="team" class="section section--alt">
+    <div class="container">
+      <div class="section-head">
+        <span class="label-institutional" id="teamEyebrow">LEADERSHIP & GUIDANCE</span>
+        <h2 id="teamHeading">Our Team</h2>
+        <p class="section-lead" id="teamLead" style="display:none;"></p>
+      </div>
+      <div class="team-carousel-container" id="teamContainer">
+        <!-- Team members injected by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== ARTICLES & LEGAL INSIGHTS ========== -->
+  <section id="articles" class="section section--surface">
+    <div class="container">
+      <div class="section-head section-head--center" style="max-width: 820px;">
+        <span class="label-institutional" id="articlesEyebrow">ARTICLES & LEGAL INSIGHTS</span>
+        <h2 id="articlesHeading">Articles &amp; Legal Insights</h2>
+        <p class="section-lead" id="articlesLead">
+          Perspectives, commentary, and field notes from Safar Legal Trust on constitutional rights, advocacy, and community legal literacy.
+        </p>
+      </div>
+
+      <div class="articles-grid" id="articlesGrid">
+        <!-- Rendered from CMS; static defaults below remain if content is unavailable -->
+        <article class="article-card reveal-init">
+          <div class="article-card__body">
+            <span class="article-card__tag">Legal Literacy</span>
+            <h3 class="article-card__title">Pan-India Legal Literacy Drive</h3>
+            <p class="article-card__excerpt">Interactive workshops empowering citizens and students with fundamental constitutional and statutory rights.</p>
+          </div>
+        </article>
+        <article class="article-card reveal-init">
+          <div class="article-card__body">
+            <span class="article-card__tag">Advocacy &amp; Mentorship</span>
+            <h3 class="article-card__title">Youth Advocacy &amp; Mentorship Bootcamps</h3>
+            <p class="article-card__excerpt">Mentoring law graduates in trial advocacy, procedural drafting, and ethical litigation practice.</p>
+          </div>
+        </article>
+        <article class="article-card reveal-init">
+          <div class="article-card__body">
+            <span class="article-card__tag">Community Aid</span>
+            <h3 class="article-card__title">Grassroots Community Aid &amp; Support</h3>
+            <p class="article-card__excerpt">Assisting underprivileged families in accessing legal aid and understanding administrative dispute mechanisms.</p>
+          </div>
+        </article>
+      </div>
+
+      <div class="articles-cta">
+        <a class="btn btn--outline" href="/articles">View All Articles &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== DOCUMENTARY GALLERY ========== -->
+  <section id="gallery" class="section section--surface">
+    <div class="container">
+      <div class="section-head section-head--center" style="max-width: 800px;">
+        <span class="label-institutional" id="galleryEyebrow">ARCHIVAL & FIELD DOCUMENTATION</span>
+        <h2 id="galleryHeading">Institutional Gallery</h2>
+        <p class="section-lead" id="galleryLead">
+          Documentary glimpses of practical chamber research, drafting masterclasses, and community literacy camps.
+        </p>
+      </div>
+
+      <div class="gallery-grid" id="galleryGrid">
+        <div class="gallery-item">
+          <img src="assets/gallery-library.jpg" alt="Indian Law Students conducting research in the Advocate's Association Library" loading="lazy">
+          <div class="gallery-caption">
+            <span class="gallery-caption__tag">Research & Precedent</span>
+            <div class="gallery-caption__title">Advocate's Association Library & Case Law Analysis</div>
+          </div>
+        </div>
+
+        <div class="gallery-item">
+          <img src="assets/gallery-drafting.jpg" alt="Interactive Legal Training and Drafting Masterclass with Practicing Counsel" loading="lazy">
+          <div class="gallery-caption">
+            <span class="gallery-caption__tag">Procedural Lab</span>
+            <div class="gallery-caption__title">Chamber Drafting Masterclass & Petition Review</div>
+          </div>
+        </div>
+
+        <div class="gallery-item">
+          <img src="assets/gallery-community.jpg" alt="Constitutional Awareness and Legal Rights Workshop with Citizens" loading="lazy">
+          <div class="gallery-caption">
+            <span class="gallery-caption__tag">Grassroots Outreach</span>
+            <div class="gallery-caption__title">Constitutional Literacy & Citizen Rights Workshop</div>
+          </div>
+        </div>
+
+        <div class="gallery-item">
+          <img src="assets/hero-courtroom.jpg" alt="Courtroom Chamber for Trial Advocacy Training" loading="lazy">
+          <div class="gallery-caption">
+            <span class="gallery-caption__tag">Courtroom Procedure</span>
+            <div class="gallery-caption__title">Chambers & Trial Courtroom Decorum Study</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- View More in Subpage Button -->
+      <div class="gallery-view-more-row" id="galleryViewMoreRow" style="text-align: center; margin-top: 38px;">
+        <a class="btn btn--outline" href="/gallery" id="galleryViewMoreBtn" style="padding: 12px 30px; font-weight: 700; display: inline-flex; align-items: center; gap: 10px;">
+          <span>Explore Full Institutional Gallery (<span id="galleryTotalBadge">0</span> Photos)</span>
+          <span aria-hidden="true">&rarr;</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CLIENT FEEDBACK & PERSPECTIVES ========== -->
+  <section id="testimonials" class="section section--alt">
+    <div class="container">
+      <div class="section-head section-head--center" style="max-width: 800px; margin-left: auto; margin-right: auto; text-align: center;">
+        <span class="label-institutional" id="testimonialsEyebrow">CLIENT &amp; STUDENT FEEDBACK</span>
+        <h2 id="testimonialsHeading">Student &amp; Community Perspectives</h2>
+        <p class="section-lead" id="testimonialsLead">
+          Reflections from law students, young advocates, and community leaders who have experienced the Trust's guidance.
+        </p>
+      </div>
+
+      <div class="testimonials-single-row" id="testimonialContainer">
+        <div class="feedback-showcase-card" id="feedbackShowcaseCard">
+          <span class="feedback-quote-mark" aria-hidden="true">“</span>
+          <div class="feedback-content-wrapper" id="feedbackContentWrapper">
+            <p class="feedback-quote-text" id="feedbackQuote">
+              “Safar Legal Trust provided the exact mentorship and clarity I needed as a first-generation law student. Adv. Paramhansh Upadhyay’s guidance on courtroom drafting transformed my outlook.”
+            </p>
+            <div class="feedback-author-row">
+              <div class="feedback-author-info">
+                <span class="feedback-author-name" id="feedbackAuthor">Priya Sharma</span>
+                <span class="feedback-author-role" id="feedbackRole">Final Year Law Student, LL.B.</span>
+              </div>
+              <div class="feedback-nav-controls">
+                <span class="feedback-count-badge" id="feedbackCountBadge">1 / 3</span>
+                <button class="feedback-nav-btn" id="feedbackPrevBtn" type="button" aria-label="Previous Feedback">‹</button>
+                <div class="feedback-dots" id="feedbackDots"></div>
+                <button class="feedback-nav-btn" id="feedbackNextBtn" type="button" aria-label="Next Feedback">›</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== ADMISSIONS / REGISTRATION ========== -->
+  <section id="admissions" class="section section--surface">
+    <div class="container">
+      <div class="admissions-grid">
+        <div class="admissions-info">
+          <span class="label-institutional">ENROLMENT & INQUIRY</span>
+          <h3>Apply for Mentorship & Training</h3>
+          <p>
+            Safar Legal Trust admits students and young advocates on a cohort basis to ensure rigorous faculty attention and practical exposure. We welcome aspiring legal professionals committed to professional excellence and ethical advocacy.
+          </p>
+
+          <ul class="admissions-criteria">
+            <li>Open to enrolled law students (3-Year or 5-Year LL.B. streams)</li>
+            <li>Open to recent law graduates and junior advocates</li>
+            <li>Dedication to rigorous drafting labs and scheduled courtroom sessions</li>
+            <li>No arbitrary fees — merit and commitment to the profession prioritized</li>
+          </ul>
+
+          <p style="font-size: 13.5px; color: var(--text-muted); margin-top: 16px;">
+            For non-student legal inquiries or organizational collaborations, you may also use this application channel or reach our administrative office directly.
+          </p>
+        </div>
+
+        <div class="institutional-form">
+          <div class="form-head">
+            <h3>Student Application & Inquiry</h3>
+            <p>Please provide your academic background and areas of interest.</p>
+          </div>
+
+          <form id="contactForm">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="cfName" class="form-label">Full Name *</label>
+                <input id="cfName" class="form-control" type="text" placeholder="e.g. Rahul Sharma" required>
+              </div>
+              <div class="form-group">
+                <label for="cfEmail" class="form-label">Email Address *</label>
+                <input id="cfEmail" class="form-control" type="email" placeholder="you@university.edu" required>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="cfPhone" class="form-label">Contact Number *</label>
+                <input id="cfPhone" class="form-control" type="tel" placeholder="+91 98765 43210" required>
+              </div>
+              <div class="form-group">
+                <label for="cfInstitution" class="form-label">Law College / Institution *</label>
+                <input id="cfInstitution" class="form-control" type="text" placeholder="e.g. Faculty of Law, DU" required>
+              </div>
+            </div>
+
+            <div class="form-group full" style="margin-bottom: 20px;">
+              <label for="cfYear" class="form-label">Year of Study / Status *</label>
+              <input id="cfYear" class="form-control" type="text" placeholder="e.g. 3rd Year (5-Year LL.B.), Citizen, Advocate..." required>
+            </div>
+
+            <div class="form-group full" style="margin-bottom: 20px;">
+              <label for="cfMessage" class="form-label">Statement of Interest / Inquiry *</label>
+              <textarea id="cfMessage" class="form-control" placeholder="Briefly state your academic background, career goals, and what you hope to achieve through this mentorship program." required></textarea>
+            </div>
+
+            <button class="btn btn--primary" type="submit" id="submitBtn" style="width: 100%;">
+              Submit Application / Inquiry
+            </button>
+            <div id="formNote" class="form-feedback"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CONTACT & CHAMBERS ========== -->
+  <section id="contact" class="section section--alt">
+    <div class="container">
+      <div class="section-head">
+        <span class="label-institutional" id="contactEyebrow">OFFICE & REACH</span>
+        <h2 id="contactHeading">Contact & Trust Secretariat</h2>
+        <p class="section-lead" id="contactLead">
+          Connect with Safar Legal Trust for inquiries, admissions, and institutional collaborations.
+        </p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-card">
+          <div class="contact-item">
+            <div class="contact-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+            </div>
+            <div>
+              <span class="contact-label">Official Email</span>
+              <div class="contact-value" id="contactEmail">
+                <a href="mailto:contact@safarlegaltrust.org">contact@safarlegaltrust.org</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+            </div>
+            <div>
+              <span class="contact-label">Direct Contact</span>
+              <div class="contact-value" id="contactPhone">
+                <a href="tel:+919876543210">+91 98765 43210</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div>
+              <span class="contact-label">Trust Office & Chambers</span>
+              <div class="contact-value" id="contactAddress">
+                New Delhi, India
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div>
+              <span class="contact-label">Consultation Hours</span>
+              <div class="contact-value">
+                Monday to Saturday • 10:00 AM – 7:00 PM IST
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-map-wrapper" id="mapEmbed">
+          <iframe title="Trust Location Map" src="https://www.google.com/maps?q=New%20Delhi%2C%20India&output=embed" loading="lazy"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
 
 </main>
-<footer><strong id="footerBrand">PARAMHANSH UPADHYAY</strong><span id="footerText">© 2026. All rights reserved.</span><a href="admin/index.html">Admin Login</a></footer>
+
+<footer class="footer" id="siteFooter">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
+          <div class="brand-crest" id="footerBrandCrest" style="display: none; width: 38px; height: 38px;"></div>
+          <h3 style="margin: 0;">Safar Legal Trust</h3>
+        </div>
+        <p>Founded by Adv. Paramhansh Upadhyay &mdash; dedicated to legal awareness, mentorship, and social empowerment across India.</p>
+        <p class="footer-motto" id="footerMotto">Knowledge &bull; Justice &bull; Opportunity &bull; Social Impact</p>
+      </div>
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <ul class="footer-links">
+          <li><a href="#about">About the Trust</a></li>
+          <li><a href="#pillars">The Four Pillars</a></li>
+          <li><a href="#founder">Founder</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Engage</h4>
+        <ul class="footer-links">
+          <li><a href="#articles">Articles</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#testimonials">Client Feedback</a></li>
+          <li><a href="#admissions">Apply / Enquire</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul class="footer-links">
+          <li><a href="mailto:contact@safarlegaltrust.org" id="footerEmail">contact@safarlegaltrust.org</a></li>
+          <li><a href="tel:+919876543210" id="footerPhone">+91 98765 43210</a></li>
+          <li><span id="footerAddress">New Delhi, India</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p id="footerCopyright">&copy; 2026 Safar Legal Trust. All rights reserved.</p>
+      <div class="footer-bottom-links">
+        <a href="#home">Back to top</a>
+        <a href="/admin/login" class="admin-tag-link">Admin Portal</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
 <script src="site.js"></script>
-</body></html>
+</body>
+</html>

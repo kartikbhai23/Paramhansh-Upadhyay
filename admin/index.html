@@ -2,73 +2,847 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Paramhansh Upadhyay — Advocate CMS</title><link rel="stylesheet" href="admin.css">
+<title>Paramhansh Upadhyay — Admin CMS</title>
+<link rel="stylesheet" href="/admin/admin.css">
 </head>
 <body>
 <aside class="sidebar">
   <div class="logo">PU<small>ADVOCATE CMS</small></div>
   <nav id="nav">
     <button class="nav-item active" data-section="dashboard">Dashboard</button>
-    <button class="nav-item" data-section="profile">Profile</button>
+    <button class="nav-item" data-section="profile">Profile &amp; Advocate Info</button>
+    <button class="nav-item" data-section="images">Website Images</button>
+    <button class="nav-item" data-section="pillars">Core Pillars</button>
     <button class="nav-item" data-section="practice">Practice Areas</button>
-    <button class="nav-item" data-section="cases">Case Studies</button>
-    <button class="nav-item" data-section="articles">Articles</button>
-    <button class="nav-item" data-section="testimonials">Testimonials</button>
+    <button class="nav-item" data-section="cases">Articles</button>
+    <button class="nav-item" data-section="testimonials">Feedback</button>
     <button class="nav-item" data-section="team">Team Members</button>
     <button class="nav-item" data-section="media">Media Library</button>
-    <button class="nav-item" data-section="messages">Messages</button>
+    <button class="nav-item" data-section="announcements">Announcement Bar</button>
+    <button class="nav-item" data-section="messages">Messages / Submissions</button>
+    <button class="nav-item" data-section="stats">Impact Statistics</button>
+    <button class="nav-item" data-section="sections">Section Headings</button>
     <button class="nav-item" data-section="settings">Settings</button>
   </nav>
-  <a class="view-site" href="../index.html" target="_blank">View Website ↗</a>
+  <a class="view-site" href="/" target="_blank">View Website ↗</a>
 </aside>
 <main>
-<header><div><small>ADMIN DASHBOARD</small><h1 id="pageTitle">Good afternoon, Paramhansh</h1></div><div class="header-actions"><span class="saved" id="saveStatus">● Local changes saved</span><button class="admin-btn">Admin ▾</button></div></header>
+<header>
+  <div>
+    <small>ADMIN DASHBOARD</small>
+    <h1 id="pageTitle">Advocate Dashboard</h1>
+  </div>
+  <div class="header-actions">
+    <span class="saved" id="saveStatus">● All changes saved</span>
+    <span class="admin-email" id="adminEmail"></span>
+    <button class="logout-btn" id="logoutBtn" type="button">Log out</button>
+  </div>
+</header>
 
 <section id="dashboard" class="page active-page">
-  <div class="stats"><div><span>Published Articles</span><b id="statArticles">0</b></div><div><span>Case Studies</span><b id="statCases">0</b></div><div><span>Testimonials</span><b id="statTestimonials">0</b></div><div><span>Enquiries</span><b id="statMessages">0</b></div></div>
-  <div class="grid"><div class="panel"><h2>Quick actions</h2><div class="actions"><button data-go="articles">＋ New Article</button><button data-go="cases">＋ Add Case Study</button><button data-go="practice">＋ Add Practice Area</button><button data-go="media">＋ Upload Media</button></div></div><div class="panel"><h2>Website profile</h2><p><strong id="dashName">Paramhansh Upadhyay</strong></p><p class="muted" id="dashDesignation">Advocate</p><p class="muted">Edit your website content from the sections in the left sidebar. Changes are saved in this browser.</p></div></div>
-  <div class="panel"><h2>Recent activity</h2><div class="empty" id="activity">No activity yet. Your edits will appear here.</div></div>
-</section>
-
-<section id="profile" class="page"><div class="panel"><div class="section-head"><div><small>WEBSITE PROFILE</small><h2>Professional information</h2></div><button class="primary" id="saveProfile">Save Profile</button></div>
-  <div class="photo-row">
-    <div class="photo-preview" id="pPhotoPreview"><span>No photo</span></div>
-    <div class="photo-actions">
-      <label class="upload-btn">＋ Upload Photo<input id="pPhotoUpload" type="file" accept="image/*" hidden></label>
-      <button class="admin-btn" id="pPhotoRemove" type="button">Remove Photo</button>
-      <p class="hint">This photo replaces the "PU" placeholder in the website hero section. Square images work best.</p>
+  <div class="stats">
+    <div><span>Team Members</span><b id="statTeam">0</b></div>
+    <div><span>Core Pillars</span><b id="statPillars">0</b></div>
+    <div><span>Practice Areas</span><b id="statPractice">0</b></div>
+    <div><span>Articles</span><b id="statCases">0</b></div>
+    <div><span>Gallery Photos</span><b id="statMedia">0</b></div>
+    <div><span>Enquiries</span><b id="statMessages">0</b></div>
+  </div>
+  <div class="grid">
+    <div class="panel">
+      <h2>Quick actions</h2>
+      <div class="actions">
+        <button data-go="images">🖼️ Edit &amp; Change Website Images</button>
+        <button data-go="announcements">📢 Edit Announcement Ticker</button>
+        <button data-go="team">👥 Manage &amp; Update Team</button>
+        <button data-go="media">📷 Manage Gallery Photos</button>
+        <button data-go="cases">📰 New Article</button>
+        <button data-go="pillars">🏛️ Manage Core Pillars</button>
+        <button data-go="practice">⚖️ Add Practice Area</button>
+      </div>
+    </div>
+    <div class="panel">
+      <h2>Advocate profile</h2>
+      <p><strong id="dashName">Paramhansh Upadhyay</strong></p>
+      <p class="muted" id="dashDesignation">Advocate</p>
+      <p class="muted">Manage your website content, team profiles, practice areas, articles, and enquiries from this dashboard.</p>
     </div>
   </div>
-  <div class="form-grid"><label>Full name<input id="pName" value="Paramhansh Upadhyay"></label><label>Designation<input id="pDesignation" value="Advocate"></label><label>Tagline<input id="pTagline" placeholder="Professional legal representation and strategic counsel"></label><label>Years of experience<input id="pExperience" type="number" min="0" placeholder="e.g. 12"></label><label class="full">Biography<textarea id="pBio" rows="6" placeholder="Professional biography..."></textarea></label><label>Facebook<input id="pFacebook" value="https://www.facebook.com/ParamIAS700"></label><label>Instagram<input id="pInstagram" value="https://www.instagram.com/paramhanshupadhyay/"></label><label>YouTube<input id="pYoutube" value="https://www.youtube.com/@paramhanshupadhyay"></label><label>Twitter / X<input id="pTwitter" placeholder="https://x.com/yourhandle"></label><label>LinkedIn<input id="pLinkedin" placeholder="https://linkedin.com/in/yourprofile"></label></div></div></section>
+  <div class="panel">
+    <h2>Recent activity</h2>
+    <div class="empty" id="activity">No activity yet. Your edits will appear here.</div>
+  </div>
+</section>
 
-<section id="practice" class="page"><div class="panel"><div class="section-head"><div><small>PRACTICE AREAS</small><h2>Manage legal services</h2></div><button class="primary" id="addPractice">＋ Add Practice Area</button></div><div id="practiceList" class="content-list"></div></div></section>
-<section id="cases" class="page"><div class="panel"><div class="section-head"><div><small>CASE STUDIES</small><h2>Manage selected matters</h2></div><button class="primary" id="addCase">＋ Add Case Study</button></div><div id="caseList" class="content-list"></div></div></section>
-<section id="articles" class="page"><div class="panel"><div class="section-head"><div><small>LEGAL ARTICLES</small><h2>Publish professional content</h2></div><button class="primary" id="addArticle">＋ New Article</button></div><div id="articleList" class="content-list"></div></div></section>
-<section id="testimonials" class="page"><div class="panel"><div class="section-head"><div><small>TESTIMONIALS</small><h2>Manage client feedback</h2></div><button class="primary" id="addTestimonial">＋ Add Testimonial</button></div><div id="testimonialList" class="content-list"></div></div></section>
-<section id="team" class="page"><div class="panel"><div class="section-head"><div><small>TEAM MEMBERS</small><h2>Manage the legal team</h2></div><button class="primary" id="addTeam">＋ Add Team Member</button></div><div id="teamList" class="content-list"></div></div></section>
-<section id="media" class="page"><div class="panel"><div class="section-head"><div><small>MEDIA LIBRARY</small><h2>Upload website images</h2></div><label class="upload-btn">＋ Upload Image<input id="mediaUpload" type="file" accept="image/*" multiple hidden></label></div><div id="mediaList" class="media-grid"><div class="empty">No media uploaded yet.</div></div></div></section>
-<section id="messages" class="page"><div class="panel"><div class="section-head"><div><small>CONTACT ENQUIRIES</small><h2>Visitor messages</h2></div></div><div id="messageList" class="content-list"><div class="empty">No enquiries yet. Website contact-form submissions will appear here after backend integration.</div></div></div></section>
-<section id="settings" class="page">
-  <div class="panel"><div class="section-head"><div><small>SITE LOGO</small><h2>Header &amp; branding</h2></div></div>
+<section id="profile" class="page">
+  <div class="panel">
+    <div class="section-head">
+      <div><small>WEBSITE PROFILE</small><h2>Advocate Information</h2></div>
+      <button class="primary" id="saveProfile">Save Profile</button>
+    </div>
     <div class="photo-row">
-      <div class="logo-preview" id="sLogoPreview"><span>P<i>U</i></span></div>
+      <div class="photo-preview" id="pPhotoPreview"><span>No photo</span></div>
       <div class="photo-actions">
-        <label class="upload-btn">＋ Upload Logo<input id="sLogoUpload" type="file" accept="image/*" hidden></label>
-        <button class="admin-btn" id="sLogoRemove" type="button">Remove Logo</button>
-        <p class="hint">Replaces the "PU" text logo in the site header. Transparent PNG recommended.</p>
+        <label class="upload-btn">＋ Upload Photo<input id="pPhotoUpload" type="file" accept="image/*" hidden></label>
+        <button class="admin-btn" id="pPhotoRemove" type="button">Remove Photo</button>
+        <button class="admin-btn" type="button" onclick="openSection('images')" style="color:#6f9cff; border-color:#353e5e;">🖼️ Open Website Images Studio ↗</button>
+        <p class="hint">Portrait featured on the website hero section.</p>
+      </div>
+    </div>
+    <div class="form-grid">
+      <label>Full Name<input id="pName" value="Paramhansh Upadhyay"></label>
+      <label>Designation<input id="pDesignation" value="Advocate"></label>
+      <label class="full">Tagline / Mission<input id="pTagline" placeholder="Professional legal representation, strategic counsel and client-focused advocacy."></label>
+      <label>Years Experience<input id="pExperience" type="text" placeholder="e.g. 10+"></label>
+      <label class="full">Biography<textarea id="pBio" rows="5" placeholder="Advocate profile and professional background..."></textarea></label>
+      <label>Facebook<input id="pFacebook" value="https://www.facebook.com/ParamIAS700"></label>
+      <label>Instagram<input id="pInstagram" value="https://www.instagram.com/paramhanshupadhyay/"></label>
+      <label>YouTube<input id="pYoutube" value="https://www.youtube.com/@paramhanshupadhyay"></label>
+      <label>Twitter / X<input id="pTwitter" placeholder="https://x.com/yourhandle"></label>
+      <label>LinkedIn<input id="pLinkedin" placeholder="https://linkedin.com/in/yourprofile"></label>
+    </div>
+  </div>
+</section>
+
+<section id="images" class="page">
+  <div class="panel" style="margin-bottom: 24px;">
+    <div class="section-head" style="margin-bottom: 0;">
+      <div>
+        <small>WEBSITE VISUAL ASSETS</small>
+        <h2>Website Key Images &amp; Banners</h2>
+        <p class="muted" style="margin-top: 4px;">Edit, change, and preview the core visual images across the website — including the Hero Section Courtroom Chamber photo, About Trust Library study hall photo, and Founder Badge Portrait.</p>
+      </div>
+      <div style="display:flex; gap:10px; align-items:center;">
+        <button class="primary" id="saveAllImagesBtn" type="button">Save All Images</button>
       </div>
     </div>
   </div>
-  <div class="panel"><div class="section-head"><div><small>WEBSITE SETTINGS</small><h2>General settings</h2></div><button class="primary" id="saveSettings">Save Settings</button></div><div class="form-grid"><label>Website title<input id="sTitle" value="Paramhansh Upadhyay | Advocate"></label><label>Primary email<input id="sEmail" type="email" placeholder="office@example.com"></label><label>Phone<input id="sPhone" placeholder="+91 ..."></label><label>Office address<input id="sAddress" placeholder="Office address, city, state"></label><label class="full">Footer text<textarea id="sFooter" rows="3" placeholder="Professional legal representation..."></textarea></label></div></div>
-  <div class="panel"><div class="section-head"><div><small>GOOGLE MAP</small><h2>Office location</h2></div></div>
+
+  <!-- Hero Section Showcase Image (Courtroom & Chambers) -->
+  <div class="panel" id="heroImagePanel" style="margin-bottom: 24px; border: 1px solid #333141;">
+    <div class="section-head" style="margin-bottom: 16px;">
+      <div>
+        <small>HOMEPAGE TOP SHOWCASE</small>
+        <h2>1. Hero Section Courtroom Chamber Image</h2>
+        <p class="muted" style="margin-top: 4px;">Featured on the website homepage Hero section alongside the trust mission, foundational pillars, and the founder overlay badge.</p>
+      </div>
+      <button class="primary" id="saveHeroImageBtn" type="button">Save Hero Image</button>
+    </div>
+
+    <div style="display:grid; grid-template-columns: minmax(300px, 460px) 1fr; gap: 24px; align-items: start;">
+      <!-- Live Preview with Overlay Badge -->
+      <div>
+        <label style="margin-bottom: 8px; font-weight: 700; color: #fff;">Live Website Hero Preview:</label>
+        <div class="img-preview-box" style="position: relative; border-radius: 12px; overflow: hidden; border: 1px solid #3e3c50; background: #0c0b12; aspect-ratio: 4 / 3; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+          <img id="heroImgPreview" src="assets/hero-courtroom.jpg" alt="Hero Courtroom Preview" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+          
+          <!-- Realistic Founder Badge Overlay Preview -->
+          <div class="hero-badge-preview" style="position: absolute; bottom: 12px; left: 12px; right: 12px; background: rgba(17, 24, 39, 0.92); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.14); border-radius: 8px; padding: 10px 14px; display: flex; align-items: center; gap: 12px;">
+            <div id="heroBadgeAvatarPreview" style="width: 38px; height: 38px; border-radius: 50%; overflow: hidden; flex-shrink: 0; border: 1px solid rgba(255,255,200,0.3); background: #1a1926;">
+              <img src="assets/paramhansh-upadhyay.png" alt="Avatar" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+            <div style="overflow: hidden;">
+              <div id="heroBadgeName" style="color: #ffd166; font-size: 13px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Adv. Paramhansh Upadhyay</div>
+              <div id="heroBadgeRole" style="color: #9ca3af; font-size: 11px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Advocate &amp; Founder, Safar Legal Trust</div>
+            </div>
+          </div>
+        </div>
+        <p class="hint" style="margin-top: 8px;">Live aspect-ratio matches how visitors see the Chambers photo on the website hero section.</p>
+      </div>
+
+      <!-- Controls & Input Form -->
+      <div style="display: flex; flex-direction: column; gap: 16px;">
+        <label>
+          Image File Path or Web URL
+          <input id="heroImageUrl" type="text" placeholder="e.g. assets/hero-courtroom.jpg or https://... or data:image/..." style="font-family: monospace; font-size: 13px;">
+          <span class="hint">Type/paste any image URL, relative file path, or upload a new image file below.</span>
+        </label>
+
+        <div>
+          <label style="margin-bottom: 8px; font-weight: 700; color: #fff;">Choose Image From Your Device:</label>
+          <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
+            <label class="upload-btn" style="cursor: pointer; padding: 10px 18px; margin: 0; display: inline-flex; align-items: center; gap: 6px;">
+              📁 Choose Image File
+              <input id="heroImageUpload" type="file" accept="image/*" hidden>
+            </label>
+            <button class="admin-btn" id="heroImageReset" type="button" style="display: inline-flex; align-items: center; gap: 6px;">
+              ↺ Reset to Default Chambers Image
+            </button>
+            <span id="heroImageFileName" style="font-size: 12px; color: #8c8a9c;"></span>
+          </div>
+        </div>
+
+        <div style="background: #111019; border: 1px solid #2d2b3b; border-radius: 8px; padding: 14px; margin-top: 6px;">
+          <div style="display: flex; align-items: center; gap: 8px; color: #77c69b; font-size: 13px; font-weight: 600;">
+            <span>💡 Pro Tip:</span>
+          </div>
+          <p class="hint" style="margin-top: 4px; max-width: none;">Recommended resolution: <strong>1600 × 1200 px</strong> (or 4:3 landscape ratio). Uploaded images are automatically optimized for fast loading across desktop and mobile.</p>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px; padding-top: 14px; border-top: 1px solid #282635;">
+          <span id="heroImageStatus" style="font-size: 13px; color: #77c69b; font-weight: 600;"></span>
+          <button class="primary" id="saveHeroImageBtn2" type="button" style="padding: 10px 22px;">Save Hero Image</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- About Trust Section Image (Law Library & Study Hall) -->
+  <div class="panel" id="aboutImagePanel" style="margin-bottom: 24px; border: 1px solid #333141;">
+    <div class="section-head" style="margin-bottom: 16px;">
+      <div>
+        <small>ABOUT THE TRUST SECTION</small>
+        <h2>2. About Trust Section Library Image</h2>
+        <p class="muted" style="margin-top: 4px;">Displayed in the About Safar Legal Trust section above the institutional metrics (10,000+ reached, Pan-India student network).</p>
+      </div>
+      <button class="primary" id="saveAboutImageBtn" type="button">Save About Image</button>
+    </div>
+
+    <div style="display:grid; grid-template-columns: minmax(300px, 460px) 1fr; gap: 24px; align-items: start;">
+      <!-- Live Preview -->
+      <div>
+        <label style="margin-bottom: 8px; font-weight: 700; color: #fff;">Live Website About Section Preview:</label>
+        <div class="img-preview-box" style="position: relative; border-radius: 12px; overflow: hidden; border: 1px solid #3e3c50; background: #0c0b12; aspect-ratio: 4 / 3; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+          <img id="aboutImgPreview" src="assets/gallery-library.jpg" alt="About Library Preview" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+          
+          <div style="position: absolute; top: 10px; left: 10px; background: rgba(18,22,34,0.92); color: #ffd166; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.8px; padding: 4px 10px; border-radius: 4px; border: 1px solid rgba(255,209,102,0.4); backdrop-filter: blur(4px);">
+            Law Library &amp; Research Hall
+          </div>
+        </div>
+        <p class="hint" style="margin-top: 8px;">Showcasing student legal research and practical chamber study hall in the About section.</p>
+      </div>
+
+      <!-- Controls & Input Form -->
+      <div style="display: flex; flex-direction: column; gap: 16px;">
+        <label>
+          Image File Path or Web URL
+          <input id="aboutImageUrl" type="text" placeholder="e.g. assets/gallery-library.jpg or https://... or data:image/..." style="font-family: monospace; font-size: 13px;">
+          <span class="hint">Type/paste any image URL, relative file path, or upload a new image file below.</span>
+        </label>
+
+        <div>
+          <label style="margin-bottom: 8px; font-weight: 700; color: #fff;">Choose Image From Your Device:</label>
+          <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
+            <label class="upload-btn" style="cursor: pointer; padding: 10px 18px; margin: 0; display: inline-flex; align-items: center; gap: 6px;">
+              📁 Choose Image File
+              <input id="aboutImageUpload" type="file" accept="image/*" hidden>
+            </label>
+            <button class="admin-btn" id="aboutImageReset" type="button" style="display: inline-flex; align-items: center; gap: 6px;">
+              ↺ Reset to Default Library Image
+            </button>
+            <span id="aboutImageFileName" style="font-size: 12px; color: #8c8a9c;"></span>
+          </div>
+        </div>
+
+        <div style="background: #111019; border: 1px solid #2d2b3b; border-radius: 8px; padding: 14px; margin-top: 6px;">
+          <div style="display: flex; align-items: center; gap: 8px; color: #77c69b; font-size: 13px; font-weight: 600;">
+            <span>💡 Pro Tip:</span>
+          </div>
+          <p class="hint" style="margin-top: 4px; max-width: none;">Recommended resolution: <strong>1600 × 1200 px</strong> (or 4:3 landscape ratio). Works best with photos of legal libraries, chamber drafting sessions, or community workshops.</p>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px; padding-top: 14px; border-top: 1px solid #282635;">
+          <span id="aboutImageStatus" style="font-size: 13px; color: #77c69b; font-weight: 600;"></span>
+          <button class="primary" id="saveAboutImageBtn2" type="button" style="padding: 10px 22px;">Save About Image</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Founder Avatar / Hero Badge Portrait -->
+  <div class="panel" id="avatarImagePanel" style="margin-bottom: 24px; border: 1px solid #333141;">
+    <div class="section-head" style="margin-bottom: 16px;">
+      <div>
+        <small>PORTRAIT &amp; AVATAR</small>
+        <h2>3. Founder Hero Badge Avatar &amp; Portrait</h2>
+        <p class="muted" style="margin-top: 4px;">Appears inside the Hero courtroom overlay badge, author signatures, and website founder bio cards.</p>
+      </div>
+      <button class="primary" id="saveFounderAvatarBtn" type="button">Save Avatar Photo</button>
+    </div>
+
+    <div style="display:grid; grid-template-columns: 180px 1fr; gap: 24px; align-items: center;">
+      <!-- Circular Preview -->
+      <div style="display:flex; flex-direction:column; align-items:center; gap:8px;">
+        <div id="founderAvatarPreview" style="width: 140px; height: 140px; border-radius: 50%; overflow: hidden; border: 2px solid #3977ff; background: #111019; box-shadow: 0 4px 20px rgba(0,0,0,0.4); display: flex; align-items: center; justify-content: center;">
+          <img src="assets/paramhansh-upadhyay.png" alt="Founder Portrait" style="width: 100%; height: 100%; object-fit: cover;">
+        </div>
+        <span style="font-size: 11.5px; color: #8c8a9c; text-align: center;">Hero Badge Avatar</span>
+      </div>
+
+      <!-- Controls -->
+      <div style="display: flex; flex-direction: column; gap: 14px;">
+        <label>
+          Avatar Photo File Path or URL
+          <input id="founderAvatarUrl" type="text" placeholder="e.g. assets/paramhansh-upadhyay.png or https://..." style="font-family: monospace; font-size: 13px;">
+        </label>
+        
+        <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
+          <label class="upload-btn" style="cursor: pointer; padding: 9px 16px; margin: 0; display: inline-flex; align-items: center; gap: 6px;">
+            📁 Choose Photo File
+            <input id="founderAvatarUpload" type="file" accept="image/*" hidden>
+          </label>
+          <button class="admin-btn" id="founderAvatarReset" type="button">
+            ↺ Reset to Default Avatar
+          </button>
+          <button class="admin-btn" id="founderAvatarRemove" type="button" style="color: #ff8b8b; border-color: #552828;">
+            Remove Avatar
+          </button>
+          <span id="founderAvatarFileName" style="font-size: 12px; color: #8c8a9c;"></span>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 6px; padding-top: 12px; border-top: 1px solid #282635;">
+          <span id="founderAvatarStatus" style="font-size: 13px; color: #77c69b; font-weight: 600;"></span>
+          <button class="primary" id="saveFounderAvatarBtn2" type="button" style="padding: 9px 20px;">Save Avatar Photo</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quick Link to Gallery (Media Library) -->
+  <div class="panel" style="border: 1px solid #2d2b3b; background: #13121d;">
+    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
+      <div>
+        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+          <span style="font-size: 20px;">📷</span>
+          <strong style="color: #fff; font-size: 16px;">Institutional Gallery Photos</strong>
+        </div>
+        <p class="muted" style="margin: 0;">Looking to add, update, re-order, or change photos in the website's Institutional Gallery? Use the full Media Library manager.</p>
+      </div>
+      <button class="admin-btn" type="button" onclick="openSection('media')" style="color: #6f9cff; border-color: #353e5e; padding: 10px 18px; font-weight: 600;">
+        Open Gallery Media Library ↗
+      </button>
+    </div>
+  </div>
+</section>
+
+<section id="pillars" class="page">
+  <div class="panel">
+    <div class="section-head">
+      <div><small>CORE FOUNDATION</small><h2>The Four Pillars</h2></div>
+      <button class="primary" id="addPillar">＋ Add Pillar</button>
+    </div>
+    <p class="hint full" style="margin-bottom:16px;">These 4 foundational principles are displayed on the website Hero bar and the Four Pillars section.</p>
+    <div id="pillarList" class="content-list"></div>
+  </div>
+</section>
+
+<section id="practice" class="page">
+  <div class="panel">
+    <div class="section-head">
+      <div><small>PRACTICE AREAS</small><h2>Legal Expertise</h2></div>
+      <button class="primary" id="addPractice">＋ Add Practice Area</button>
+    </div>
+    <div id="practiceList" class="content-list"></div>
+  </div>
+</section>
+
+<section id="cases" class="page">
+  <div class="panel">
+    <div class="section-head">
+      <div><small>ARTICLES</small><h2>Legal Articles &amp; Insights</h2></div>
+      <button class="primary" id="addCase">＋ Add Article</button>
+    </div>
+    <p class="muted" style="margin:-6px 0 14px;">Use ↑/↓ to set the order, and ★ to feature an article on the homepage. Featured articles (or the first three in this order, if none are featured) show in the homepage preview; all articles are listed on the Articles page. Click any article on the site to open its full page.</p>
+    <div id="caseList" class="content-list"></div>
+  </div>
+</section>
+
+<section id="testimonials" class="page">
+  <div class="panel">
+    <div class="section-head">
+      <div><small>FEEDBACK</small><h2>Feedback</h2></div>
+      <button class="primary" id="addTestimonial">＋ Add Feedback</button>
+    </div>
+    <div id="testimonialList" class="content-list"></div>
+  </div>
+</section>
+
+<section id="team" class="page">
+  <!-- Team Member Editor Panel -->
+  <div class="panel" id="teamEditorPanel" style="border: 1px solid #333141; margin-bottom: 24px;">
+    <div class="section-head" style="margin-bottom: 16px;">
+      <div>
+        <small>TEAM MEMBER EDITOR</small>
+        <h2 id="teamFormHeading">Update / Edit Team Member</h2>
+        <p class="muted" style="margin-top: 4px;">Choose an existing member to update their profile, or add a new team member.</p>
+      </div>
+      <div style="display: flex; gap: 10px; align-items: center;">
+        <span class="role-badge" id="teamFormBadge" style="display:inline-block; padding:4px 10px;">Select Member to Update</span>
+        <button class="admin-btn" id="teamResetBtn" type="button">＋ Switch to New Member Form</button>
+      </div>
+    </div>
+
+    <!-- Quick Member Selector -->
+    <div style="background:#111019; border:1px solid #2d2b3b; border-radius:8px; padding:14px; margin-bottom:18px;">
+      <label style="color:#fff; font-weight:600; font-size:13px; display:flex; flex-direction:column; gap:6px;">
+        Choose Team Member to Update:
+        <select id="teamMemberSelect" style="background:#1a1926; border-color:#3e3c50; color:#fff; font-size:14px; padding:10px;">
+          <option value="new">＋ Create New Team Member</option>
+        </select>
+      </label>
+    </div>
+
+    <!-- Edit / Update Form -->
+    <form id="teamMemberForm" class="form-grid" onsubmit="return false;">
+      <input type="hidden" id="tmIndex" value="0">
+      
+      <label>Full Name *
+        <input id="tmName" type="text" placeholder="e.g. Adv. Paramhansh Upadhyay" required>
+      </label>
+
+      <label>Role / Designation *
+        <input id="tmRole" type="text" placeholder="e.g. Senior Associate / Advocate" required>
+      </label>
+
+      <label class="full">Profile Photo (Upload file or enter URL/path)
+        <div style="display:flex; gap:16px; align-items:center; flex-wrap:wrap; margin-top:6px;">
+          <div class="team-thumb" id="tmPhotoPreview" style="width:68px; height:68px; border-radius:10px; background:#1b1926; border:1px solid #3e3c50; overflow:hidden;">
+            <span class="avatar-initials" id="tmInitials">PU</span>
+          </div>
+          <div style="flex:1; min-width:240px; display:flex; flex-direction:column; gap:8px;">
+            <input id="tmPhotoUrl" type="text" placeholder="Photo path or URL (e.g. assets/paramhansh-upadhyay.png or https://...)">
+            <div style="display:flex; align-items:center; gap:12px;">
+              <label class="upload-btn" style="padding:7px 14px; font-size:12px; margin:0; cursor:pointer;">
+                ＋ Choose Image File
+                <input id="tmPhotoUpload" type="file" accept="image/*" hidden>
+              </label>
+              <span id="tmUploadFileName" style="font-size:12px; color:#888;"></span>
+            </div>
+          </div>
+        </div>
+      </label>
+
+      <label class="full">Short Biography &amp; Focus Area
+        <textarea id="tmBio" rows="4" placeholder="Describe the team member's role, background, focus areas, and legal expertise..."></textarea>
+      </label>
+
+      <div class="full" style="display:flex; justify-content:space-between; align-items:center; margin-top:10px; padding-top:16px; border-top:1px solid #282635;">
+        <span id="teamFormStatus" style="font-size:13px; color:#77c69b;"></span>
+        <div style="display:flex; gap:10px;">
+          <button class="admin-btn" id="teamCancelBtn" type="button" style="display:none;">Cancel</button>
+          <button class="primary" id="saveTeamMemberBtn" type="button" style="font-size:14px; padding:12px 26px; font-weight:700;">Update Team Member</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <!-- Team Auto-Sliding Loop Options Panel -->
+  <div class="panel" style="margin-bottom: 24px; border: 1px solid #2d2b3b;">
+    <div class="section-head" style="margin-bottom: 14px;">
+      <div>
+        <small>DISPLAY &amp; SLIDER OPTIONS</small>
+        <h2>Team Member Sliding Animation Loop</h2>
+        <p class="muted" style="margin-top: 4px;">Control auto-sliding right-to-left loop when team members exceed viewport or 3 members.</p>
+      </div>
+      <button class="primary-sm" id="saveSliderOptionsBtn" type="button">Save Slide Options</button>
+    </div>
+    <div class="form-grid">
+      <label>
+        Sliding Animation Mode
+        <select id="teamSliderMode">
+          <option value="auto">Auto-Loop (Slide smoothly right-to-left when &gt; 3 members or on overflow)</option>
+          <option value="always">Always Auto-Slide (Continuous infinite loop on all screen sizes)</option>
+          <option value="grid">Static Grid (Disable sliding loop)</option>
+        </select>
+      </label>
+      <label>
+        Sliding Loop Speed
+        <select id="teamSliderSpeed">
+          <option value="35s">Normal Smooth (35s per full loop)</option>
+          <option value="25s">Faster (25s per loop)</option>
+          <option value="50s">Gentle &amp; Relaxed (50s per loop)</option>
+        </select>
+      </label>
+    </div>
+    <p class="hint full" style="margin-top: 10px;">Visitors can also hover over any card to pause the slide, or use navigation arrows on the website.</p>
+  </div>
+
+  <!-- Team Directory List -->
+  <div class="panel">
+    <div class="section-head">
+      <div>
+        <small>CURRENT TEAM DIRECTORY</small>
+        <h2>All Team Members (<span id="teamCountDisplay">0</span>)</h2>
+      </div>
+      <button class="primary" id="addTeam">＋ Add Team Member</button>
+    </div>
+    <p class="hint full" style="margin-bottom:16px;">Click <strong>"✏️ Update / Edit Member"</strong> on any member below to edit their details immediately.</p>
+    <div id="teamList" class="content-list"></div>
+  </div>
+</section>
+
+<section id="media" class="page">
+  <!-- Key Images Studio Notice -->
+  <div class="panel" style="margin-bottom: 20px; background: #13121d; border: 1px solid #2d2b3b; padding: 16px 20px;">
+    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
+      <div style="display:flex; align-items:center; gap:10px;">
+        <span style="font-size:22px;">🖼️</span>
+        <div>
+          <strong style="color:#fff; font-size:14px;">Looking to edit Website Hero or About section images?</strong>
+          <p class="muted" style="margin:2px 0 0; font-size:12.5px;">Edit the Homepage Hero Courtroom image and About Trust Library image in the Website Images Studio.</p>
+        </div>
+      </div>
+      <button class="admin-btn" type="button" onclick="openSection('images')" style="color:#6f9cff; border-color:#353e5e; font-weight:600; padding:8px 16px;">
+        Open Website Images Studio ↗
+      </button>
+    </div>
+  </div>
+
+  <!-- Gallery Photo Editor Panel (for adding new or modifying existing photos) -->
+  <div class="panel" id="mediaEditorPanel" style="margin-bottom: 24px; border: 1px solid #2d2b3b;">
+    <div class="section-head" style="margin-bottom: 14px;">
+      <div>
+        <small id="mediaEditorKicker">GALLERY PHOTO EDITOR</small>
+        <h2 id="mediaEditorTitle">Add New Photo to Gallery</h2>
+        <p class="muted" style="margin-top: 4px;">Upload or link an image, set the caption title, and specify the category tag for the website's Institutional Gallery.</p>
+      </div>
+      <button class="admin-btn" id="newPhotoBtn" type="button" style="display:none;">＋ Reset to New Photo</button>
+    </div>
+
+    <form id="mediaForm" class="form-grid" onsubmit="return false;">
+      <input type="hidden" id="editingMediaIndex" value="-1">
+
+      <label>Caption / Title *
+        <input id="mediaCaption" type="text" placeholder="e.g. Advocate's Association Library &amp; Case Law Analysis" required>
+      </label>
+
+      <label>Category / Institutional Tag *
+        <input id="mediaTag" type="text" placeholder="e.g. Research &amp; Precedent, Procedural Lab, Grassroots Outreach" required>
+        <div style="display:flex; gap:6px; flex-wrap:wrap; margin-top:4px;">
+          <span class="role-badge" style="cursor:pointer; padding:3px 7px;" onclick="document.getElementById('mediaTag').value='Research & Precedent'">+ Research &amp; Precedent</span>
+          <span class="role-badge" style="cursor:pointer; padding:3px 7px;" onclick="document.getElementById('mediaTag').value='Procedural Lab'">+ Procedural Lab</span>
+          <span class="role-badge" style="cursor:pointer; padding:3px 7px;" onclick="document.getElementById('mediaTag').value='Grassroots Outreach'">+ Grassroots Outreach</span>
+          <span class="role-badge" style="cursor:pointer; padding:3px 7px;" onclick="document.getElementById('mediaTag').value='Courtroom Procedure'">+ Courtroom Procedure</span>
+        </div>
+      </label>
+
+      <label>Display Order / Sequence #
+        <input id="mediaOrder" type="number" min="1" placeholder="e.g. 1, 2, 3... (Lower numbers appear first)">
+      </label>
+
+      <label class="full">Gallery Photo * (Choose image file or enter URL/path)
+        <div style="display:flex; gap:18px; align-items:center; flex-wrap:wrap; margin-top:6px;">
+          <div id="mediaPhotoPreview" style="width:140px; height:105px; border-radius:8px; background:#111019; border:1px solid #3e3c50; overflow:hidden; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+            <span style="font-size:12px; color:#68667a; text-align:center; padding:6px;">No image selected</span>
+          </div>
+          <div style="flex:1; min-width:240px; display:flex; flex-direction:column; gap:8px;">
+            <input id="mediaUrlInput" type="text" placeholder="Image file path or URL (e.g. assets/gallery-library.jpg or https://...)">
+            <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap;">
+              <label class="upload-btn" style="padding:7px 14px; font-size:12px; margin:0; cursor:pointer;">
+                ＋ Choose Image File
+                <input id="mediaFileInput" type="file" accept="image/*" hidden>
+              </label>
+              <span id="mediaUploadFileName" style="font-size:12px; color:#888;"></span>
+            </div>
+          </div>
+        </div>
+      </label>
+
+      <div class="full" style="display:flex; justify-content:space-between; align-items:center; margin-top:10px; padding-top:16px; border-top:1px solid #282635;">
+        <span id="mediaFormStatus" style="font-size:13px; color:#77c69b;"></span>
+        <div style="display:flex; gap:10px;">
+          <button class="admin-btn" id="mediaCancelBtn" type="button" style="display:none;">Cancel Edit</button>
+          <button class="primary" id="saveMediaBtn" type="button" style="font-size:14px; padding:12px 26px; font-weight:700;">Save Photo to Gallery</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <!-- Gallery Display & Ordering Panel -->
+  <div class="panel" style="margin-bottom: 24px; border: 1px solid #2d2b3b;">
+    <div class="section-head" style="margin-bottom: 14px;">
+      <div>
+        <small>DISPLAY &amp; ORDERING SETTINGS</small>
+        <h2>Gallery Display &amp; Order Settings</h2>
+        <p class="muted" style="margin-top: 4px;">Choose how gallery images are sorted and how many rows appear on the homepage before the "Explore Full Gallery" button.</p>
+      </div>
+      <button class="primary-sm" id="saveGalleryOptionsBtn" type="button">Save Gallery Options</button>
+    </div>
+    <div class="form-grid">
+      <label>
+        Gallery Image Ordering Mode
+        <select id="mediaGallerySort">
+          <option value="custom">Custom Sequence / Priority Order (Use ▲ / ▼ buttons or # below)</option>
+          <option value="newest">Newest Uploads First</option>
+          <option value="oldest">Oldest First (Default)</option>
+        </select>
+      </label>
+      <label>
+        Homepage Gallery Display Limit
+        <select id="mediaGalleryMaxRows">
+          <option value="2">2 Rows (8 Photos — Recommended)</option>
+          <option value="1">1 Row (4 Photos)</option>
+          <option value="3">3 Rows (12 Photos)</option>
+          <option value="all">Show All Photos on Homepage</option>
+        </select>
+      </label>
+    </div>
+    <p class="hint full" style="margin-top: 10px;">Visitors on the homepage see the selected rows, and can click <strong>"Explore Full Institutional Gallery"</strong> to view all photos on the dedicated sub-page.</p>
+  </div>
+
+  <!-- Live Gallery Directory -->
+  <div class="panel">
+    <div class="section-head">
+      <div>
+        <small>ACTIVE WEBSITE GALLERY</small>
+        <h2>Institutional Gallery Photos (<span id="mediaCountDisplay">0</span>)</h2>
+        <p class="muted" style="margin-top: 4px;">These photos are displayed live on the website's Institutional Gallery. Use <strong>▲</strong> and <strong>▼</strong> to set sequence order, or click <strong>"✏️ Edit / Modify"</strong> to update details.</p>
+      </div>
+      <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+        <button class="admin-btn" id="mediaAddScrollBtn" type="button" style="color:#6f9cff; border-color:#353e5e;">＋ Add New Photo</button>
+        <label class="upload-btn" style="cursor:pointer;" title="Quickly upload multiple photos">
+          📁 Quick Multi-Upload
+          <input id="mediaUpload" type="file" accept="image/*" multiple hidden>
+        </label>
+      </div>
+    </div>
+    <div id="mediaList" class="media-grid"></div>
+  </div>
+</section>
+
+<section id="announcements" class="page">
+  <div class="panel">
+    <div class="section-head">
+      <div>
+        <small>HOMEPAGE TICKER</small>
+        <h2>Announcement Marquee Bar</h2>
+        <p class="muted" style="margin-top: 4px;">Edit the scrolling green announcement ticker displayed across the homepage.</p>
+      </div>
+      <button class="primary" id="saveAnnouncementsBtn" type="button">Save Announcements</button>
+    </div>
+
+    <!-- Live Preview inside Admin -->
+    <div style="margin-bottom: 22px;">
+      <label style="margin-bottom: 8px; font-weight: 700; color: #fff;">Live Ticker Preview:</label>
+      <div style="background: #2e5944; border: 1px solid rgba(255,255,255,0.15); border-radius: 8px; padding: 12px 18px; overflow: hidden; color: #fff; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; display: flex; align-items: center; box-shadow: 0 4px 14px rgba(0,0,0,0.25);">
+        <div id="adminMarqueePreview" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%;">
+          🚨 Admissions Open for Chamber Mentorship Program 2026! • Upcoming Constitutional Literacy Camp in Delhi • Register for Drafting &amp; Pleadings Intensive Workshop •
+        </div>
+      </div>
+    </div>
+
+    <form id="announcementForm" class="form-grid" onsubmit="return false;">
+      <label class="full">
+        Announcement Visibility
+        <select id="announcementEnabled">
+          <option value="true">✅ Visible (Show announcement ticker on website)</option>
+          <option value="false">❌ Hidden (Turn off ticker)</option>
+        </select>
+      </label>
+
+      <label class="full">
+        Announcement Text / Items (One announcement per line)
+        <p class="hint" style="margin: 4px 0 8px;">Enter each notice on its own line. They will scroll smoothly across the screen separated by the symbol below.</p>
+        <textarea id="announcementLines" rows="6" placeholder="🚨 Admissions Open for Chamber Mentorship Program 2026!&#10;Upcoming Constitutional Literacy Camp in Delhi&#10;Register for Drafting &amp; Pleadings Intensive Workshop"></textarea>
+      </label>
+
+      <label>
+        Separator Symbol
+        <input id="announcementSeparator" type="text" value="•" placeholder="e.g. • or ★ or |">
+      </label>
+
+      <label>
+        Scrolling Animation Speed
+        <select id="announcementSpeed">
+          <option value="25s">Normal Speed (25s per loop — Recommended)</option>
+          <option value="18s">Faster (18s per loop)</option>
+          <option value="35s">Relaxed &amp; Gentle (35s per loop)</option>
+          <option value="50s">Slow (50s per loop)</option>
+        </select>
+      </label>
+
+      <div class="full" style="display: flex; justify-content: space-between; align-items: center; margin-top: 12px; padding-top: 16px; border-top: 1px solid #282635;">
+        <span id="announcementSaveStatus" style="font-size: 13px; color: #77c69b;"></span>
+        <button class="primary" id="saveAnnouncementsBtn2" type="button" style="font-size: 14px; padding: 12px 28px; font-weight: 700;">Save &amp; Publish Announcements</button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<section id="messages" class="page">
+  <div class="panel">
+    <div class="section-head">
+      <div>
+        <small>CONTACT ENQUIRIES &amp; ADMISSIONS</small>
+        <h2>Visitor submissions (<span id="messageCountDisplay">0</span>)</h2>
+        <p class="muted" style="margin-top: 4px;">Click on any enquiry to view full candidate details, copy contacts, or export records.</p>
+      </div>
+      <div class="export-btn-group">
+        <button class="btn-export btn-export--excel" type="button" onclick="exportMessages('excel')" title="Export all enquiries to Excel (.csv)">📊 Export Excel</button>
+        <button class="btn-export btn-export--doc" type="button" onclick="exportMessages('doc')" title="Export all enquiries to Word (.doc)">📄 Export Docs</button>
+        <button class="btn-export btn-export--pdf" type="button" onclick="exportMessages('pdf')" title="Print / Export to PDF">📑 Export PDF</button>
+      </div>
+    </div>
+    <div id="messageList" class="content-list"><div class="empty">No enquiries yet. Website form submissions will appear here.</div></div>
+  </div>
+</section>
+
+<section id="stats" class="page">
+  <div class="panel">
+    <div class="section-head">
+      <div><small>IMPACT METRICS</small><h2>Website Statistics</h2></div>
+      <button class="primary" id="addStat">＋ Add Statistic</button>
+    </div>
+    <p class="hint full" style="margin-bottom:16px;">These metrics are shown on the website’s About section. Use the "order" field to control display sequence.</p>
+    <div id="statsList" class="content-list"></div>
+  </div>
+</section>
+
+<section id="sections" class="page">
+  <div class="panel">
+    <div class="section-head">
+      <div><small>SECTION HEADINGS</small><h2>Headings &amp; Taglines</h2></div>
+      <button class="primary" id="saveSectionHeads">Save &amp; Publish</button>
+    </div>
+    <p class="hint full" style="margin-bottom:16px;">Edit the small label, main heading, and tagline shown at the top of each website section. Leave a field blank to keep the current website text unchanged.</p>
+    <div id="sectionHeadsList" class="content-list"></div>
+  </div>
+</section>
+
+<section id="settings" class="page">
+  <div class="panel">
+    <div class="section-head"><div><small>LOGO</small><h2>Header branding</h2></div></div>
+    <div class="photo-row">
+      <div class="logo-preview" id="sLogoPreview"><span>PU</span></div>
+      <div class="photo-actions">
+        <label class="upload-btn">＋ Upload Logo<input id="sLogoUpload" type="file" accept="image/*" hidden></label>
+        <button class="admin-btn" id="sLogoRemove" type="button">Remove Logo</button>
+        <p class="hint">Upload a transparent PNG emblem if available.</p>
+      </div>
+    </div>
+  </div>
+  <div class="panel">
+    <div class="section-head">
+      <div><small>WEBSITE SETTINGS</small><h2>General settings</h2></div>
+      <button class="primary" id="saveSettings">Save Settings</button>
+    </div>
+    <div class="form-grid">
+      <label>Website title<input id="sTitle" value="Paramhansh Upadhyay | Advocate"></label>
+      <label>Primary email<input id="sEmail" type="email" placeholder="contact@paramhansh.com"></label>
+      <label>Phone<input id="sPhone" placeholder="+91 98765 43210"></label>
+      <label>Office address<input id="sAddress" placeholder="Delhi High Court Chambers, New Delhi"></label>
+      <label>Gallery Image Ordering
+        <select id="sGallerySort">
+          <option value="custom">Custom Sequence / Priority Order (Use ▲ / ▼ in Media)</option>
+          <option value="newest">Newest Uploads First</option>
+          <option value="oldest">Oldest First</option>
+        </select>
+      </label>
+      <label>Homepage Gallery Rows
+        <select id="sGalleryMaxRows">
+          <option value="2">2 Rows (8 Photos — Recommended)</option>
+          <option value="1">1 Row (4 Photos)</option>
+          <option value="3">3 Rows (12 Photos)</option>
+          <option value="all">Show All Photos on Homepage</option>
+        </select>
+      </label>
+      <label class="full" style="background:#111019; border:1px solid #2d2b3b; border-radius:8px; padding:16px; margin-top:4px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; flex-wrap:wrap; gap:8px;">
+          <div>
+            <strong style="color:#fff; font-size:14px;">Website Hero &amp; About Images</strong>
+            <p class="muted" style="margin:2px 0 0; font-size:12px;">Customize Courtroom Showcase and Library Study Hall images directly, or open the Images Studio for file uploads &amp; live preview.</p>
+          </div>
+          <button class="admin-btn" type="button" onclick="openSection('images')" style="color:#6f9cff; border-color:#353e5e; font-size:12px; padding:6px 14px;">Open Images Studio ↗</button>
+        </div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
+          <div>
+            <span style="font-size:12px; color:#aaa; font-weight:600; display:block; margin-bottom:6px;">Hero Courtroom Image</span>
+            <input id="sHeroImage" type="text" placeholder="assets/hero-courtroom.jpg">
+          </div>
+          <div>
+            <span style="font-size:12px; color:#aaa; font-weight:600; display:block; margin-bottom:6px;">About Section Library Image</span>
+            <input id="sAboutImage" type="text" placeholder="assets/gallery-library.jpg">
+          </div>
+        </div>
+      </label>
+      <label class="full">Footer text<textarea id="sFooter" rows="3" placeholder="© 2026 Paramhansh Upadhyay. All rights reserved."></textarea></label>
+      <label class="full">Vision statement<textarea id="sVisionText" rows="3" placeholder="A short paragraph describing the trust's vision, shown in the About section."></textarea></label>
+      <label class="full">Vision slogan<input id="sVisionSlogan" placeholder="Join the Safar. Shape the Future."></label>
+    </div>
+  </div>
+  <div class="panel">
+    <div class="section-head"><div><small>GOOGLE MAP</small><h2>Office location</h2></div></div>
     <div class="form-grid">
       <label class="full">Google Maps embed link (optional)<input id="sMapEmbed" placeholder="Paste link from Google Maps → Share → Embed a map"></label>
-      <p class="hint full">If left blank, the map on the website is generated automatically from the Office address above. For a precise pin, open Google Maps, search your office, choose Share → Embed a map, and paste the link here.</p>
+      <p class="hint full">If left blank, the map on the website is generated automatically from the Office address above.</p>
     </div>
     <div class="map-preview" id="sMapPreview"></div>
   </div>
+  <div class="panel">
+    <div class="section-head">
+      <div><small>HOMEPAGE TICKER</small><h2>Announcement Bar Settings</h2></div>
+      <button class="admin-btn" type="button" onclick="openSection('announcements')">Edit Announcements ↗</button>
+    </div>
+    <p class="muted">Manage the green continuous scrolling marquee bar showing admissions, workshop dates, and literacy camps on the homepage.</p>
+  </div>
+  <div class="panel">
+    <div class="section-head">
+      <div>
+        <small>DATA MANAGEMENT &amp; BACKUP</small>
+        <h2>Data Export Settings</h2>
+        <p class="muted" style="margin-top: 4px;">Download and export all your website enquiries, student applications, and CMS records in Docs, Excel, or PDF formats.</p>
+      </div>
+    </div>
+    
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-top: 14px;">
+      <!-- Enquiries Export Card -->
+      <div style="background: #111019; border: 1px solid #2d2b3b; border-radius: 8px; padding: 18px; display: flex; flex-direction: column; justify-content: space-between;">
+        <div>
+          <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+            <span style="font-size: 20px;">📬</span>
+            <strong style="font-size: 15px; color: #fff;">Visitor Enquiries &amp; Applications</strong>
+          </div>
+          <p class="muted" style="font-size: 12px; line-height: 1.5; margin-bottom: 16px;">
+            All contact inquiries, student mentorship applications, phone numbers, and statements of intent.
+          </p>
+        </div>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+          <button class="btn-export btn-export--excel" type="button" onclick="exportMessages('excel')">📊 Excel (.csv)</button>
+          <button class="btn-export btn-export--doc" type="button" onclick="exportMessages('doc')">📄 Docs (.doc)</button>
+          <button class="btn-export btn-export--pdf" type="button" onclick="exportMessages('pdf')">📑 PDF (.pdf)</button>
+        </div>
+      </div>
+
+      <!-- Complete Website Data Export Card -->
+      <div style="background: #111019; border: 1px solid #2d2b3b; border-radius: 8px; padding: 18px; display: flex; flex-direction: column; justify-content: space-between;">
+        <div>
+          <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+            <span style="font-size: 20px;">🏛️</span>
+            <strong style="font-size: 15px; color: #fff;">Complete Website Records</strong>
+          </div>
+          <p class="muted" style="font-size: 12px; line-height: 1.5; margin-bottom: 16px;">
+            Full institutional profile, team directory, core pillars, articles, practice areas, impact metrics, and gallery records.
+          </p>
+        </div>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+          <button class="btn-export btn-export--excel" type="button" onclick="exportAllWebsiteData('excel')">📊 Excel (.csv)</button>
+          <button class="btn-export btn-export--doc" type="button" onclick="exportAllWebsiteData('doc')">📄 Docs (.doc)</button>
+          <button class="btn-export btn-export--pdf" type="button" onclick="exportAllWebsiteData('pdf')">📑 PDF (.pdf)</button>
+          <button class="btn-export" type="button" onclick="exportAllWebsiteData('json')" style="color: #ffd166;">💾 Raw JSON</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="section-head"><div><small>ADMIN ACCOUNT</small><h2>Sign-in credentials</h2></div></div>
+    <form id="credForm" class="form-grid" autocomplete="off">
+      <label class="full">Current password
+        <span class="pw-wrap"><input id="ccCurrent" type="password" autocomplete="current-password" placeholder="Enter your current password" required><button type="button" class="pw-toggle" data-toggle="ccCurrent">Show</button></span>
+      </label>
+      <label>New email <span class="muted">(optional)</span><input id="ccEmail" type="email" autocomplete="off" placeholder="Leave blank to keep current"></label>
+      <label>New password <span class="muted">(optional)</span>
+        <span class="pw-wrap"><input id="ccPassword" type="password" autocomplete="new-password" placeholder="Leave blank to keep current"><button type="button" class="pw-toggle" data-toggle="ccPassword">Show</button></span>
+      </label>
+      <ul class="pw-rules full"><li>At least 8 characters</li><li>At least one letter and one number</li></ul>
+      <p class="form-msg" id="credMsg" hidden></p>
+      <div class="full"><button class="primary" id="ccSubmit" type="submit">Update credentials</button></div>
+    </form>
+  </div>
 </section>
+
 </main>
 <div id="modal" class="modal hidden"><div class="modal-box"><button class="close" id="closeModal">×</button><div id="modalContent"></div></div></div>
-<script src="admin.js"></script>
-</body></html>
+<script src="/admin/admin.js"></script>
+</body>
+</html>

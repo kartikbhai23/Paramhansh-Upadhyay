@@ -1,41 +1,41 @@
-# Paramhansh Upadhyay — Advocate Website Prototype
+# Safar Legal Trust — Official Website & CMS
 
-This is a responsive frontend prototype based on the supplied dark advocate portfolio UI reference.
+**Empowering Law. Inspiring Change.**
 
-## Included
-- `index.html` — public website
-- `styles.css` — responsive public-site styling
-- `admin/index.html` — separate CMS/dashboard UI prototype
-- `admin/admin.css` — dashboard styling
-- `assets/ui-reference.jpg` — supplied UI reference
+Official website for **Safar Legal Trust**, a legal and social organisation dedicated to creating awareness, opportunity, and support for law students, young legal professionals, and communities across India. Founded by **Adv. Paramhansh Upadhyay**.
 
-## How content updates work (important)
-`admin/admin.js` and `site.js` both read/write the same browser `localStorage` key (`paramhanshCMS`). Anything you save in the admin dashboard is written there, and `site.js` renders it on the public site on page load.
+## The Four Pillars
+- **Knowledge** • Legal awareness, workshops, and constitutional rights education.
+- **Justice** • Fair, accessible, and ethical legal advocacy and pro bono support.
+- **Opportunity** • Mentorship, practical training, and internships for law students.
+- **Social Impact** • Grassroots outreach and bridging the divide between law and society.
 
-**This only works if the admin panel and the public site are opened from the same origin.** Opening the HTML files directly by double-clicking them (`file://...`) can behave inconsistently across browsers for `localStorage`. For reliable results, serve the folder with a simple local server, e.g.:
+## Our Vision
+> *"To build a stronger and more inclusive legal community where knowledge of law becomes a tool for empowerment and positive social change."*
+> **Join the Safar. Shape the Future.**
 
+## Leadership
+- **Adv. Paramhansh Upadhyay** — Founder, Safar Legal Trust
+- Social Channels:
+  - Facebook: https://www.facebook.com/ParamIAS700
+  - Instagram: https://www.instagram.com/paramhanshupadhyay/
+  - YouTube: https://www.youtube.com/@paramhanshupadhyay
+
+## Features Included
+- `index.html` — Public portal with Dark Luxe & Light themes, Founder spotlight with real photograph, 4 pillars showcase, vision banner, key initiatives, legal insights, community testimonials, and interactive contact/join form.
+- `styles.css` — Custom design tokens, glassmorphism, responsive mobile drawer, micro-animations.
+- `site.js` — Client engine with persistent storage, theme management, and contact handler.
+- `admin/` — Content Management System (CMS) for updating profile, initiatives, articles, testimonials, and viewing membership enquiries.
+- `server/` — Optional Node.js + Express backend with session security, rate limiting, and persistent storage.
+
+## Running Locally
+You can view the site statically or start the Node.js server:
+
+```bash
+# Option 1: Using the Node.js server
+npm start
+
+# Option 2: Using any static server
+python -m http.server 3000
 ```
-cd paramhansh_advocate_site
-python3 -m http.server 8000
-```
-
-Then open `http://localhost:8000/admin/index.html` to edit, and `http://localhost:8000/index.html` to view the public site — in the **same browser**, since this prototype has no real backend/database and data lives only in that browser's storage.
-
-## What's included in the admin panel
-- Profile: name, designation, tagline, years of experience, biography ("Who I Am" on the site), social links, and a **profile photo** upload (shown in the hero section).
-- Education: qualification, institution, degree/specialization, year, description, and a display-order number — shown as a timeline on the public About section.
-- Experience: job/position, organization, start year, end year (or "Present"), description, and a display-order number — shown as a timeline on the public About section.
-- Settings: site title, email, phone, office address, footer text, a **site logo** upload (shown in the header), and a **Google Map** — either auto-generated from the office address, or a precise embed link pasted from Google Maps → Share → Embed a map.
-- Practice Areas, Case Studies, Articles, Testimonials: full add/edit/delete, all rendered live on the public site.
-- Media Library: general image uploads.
-- Messages: enquiries submitted through the public contact form appear here.
-
-Note: the "Total Cases" stat shown on the public About section isn't a separate field — it's automatically counted from however many Case Studies you've added, so it always stays accurate without extra data entry. For both Education and Experience, use the "Display order" field to control which entry shows first (lower number = shown first); if left blank, items just appear in the order they were added.
-
-## Social profiles
-Facebook: https://www.facebook.com/ParamIAS700
-Instagram: https://www.instagram.com/paramhanshupadhyay/
-YouTube: https://www.youtube.com/@paramhanshupadhyay
-
-## Next development step
-This prototype still has no real backend — all data lives in one browser's local storage, so it won't sync across devices/visitors and clearing browser data resets it. For a production site, connect the admin dashboard to a real database and authentication so content is stored centrally and enquiries are delivered reliably (e.g. by email).
+Open `http://localhost:3000` to view the website.

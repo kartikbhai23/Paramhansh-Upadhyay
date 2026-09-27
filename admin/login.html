@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Admin Sign In — Paramhansh Upadhyay CMS</title>
+<link rel="stylesheet" href="/admin/admin.css">
+</head>
+<body class="auth">
+<div class="auth-app" aria-hidden="true">
+  <iframe src="/" title="Safar Legal Trust application"></iframe>
+</div>
+<div class="auth-scrim"></div>
+<main class="auth-card">
+  <button class="auth-close" id="authClose" type="button" aria-label="Close admin login">×</button>
+  <div class="auth-heading">
+    <span class="auth-security-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 3 19 6v5c0 4.6-2.8 8.2-7 10-4.2-1.8-7-5.4-7-10V6l7-3Z"/>
+        <path d="m9.5 12 1.7 1.7 3.6-3.8"/>
+      </svg>
+    </span>
+    <div>
+      <p class="auth-kicker">Secure workspace</p>
+      <h1 id="loginTitle">Admin Login</h1>
+      <p class="auth-sub">Sign in to access the administration panel</p>
+    </div>
+  </div>
+  <form id="loginForm" novalidate>
+    <label>Admin email
+      <input id="loginEmail" type="email" autocomplete="username" placeholder="admin@example.com" required>
+    </label>
+    <label>Password
+      <span class="pw-wrap">
+        <input id="loginPassword" type="password" autocomplete="current-password" placeholder="Your password" required>
+        <button type="button" class="pw-toggle" id="togglePw" aria-label="Show password">Show</button>
+      </span>
+    </label>
+    <p class="auth-error" id="loginError" role="alert" hidden></p>
+    <button class="primary auth-submit" id="loginBtn" type="submit"><span>Sign in</span><b aria-hidden="true">↗</b></button>
+  </form>
+  <p class="auth-protected"><i></i> Protected administration area</p>
+</main>
+<script src="/admin/login.js"></script>
+</body></html>
