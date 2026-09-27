@@ -1,23 +1,15 @@
 # Dependencies
 node_modules/
 
-# Environment secrets — NEVER commit
+# Environment secrets
 .env
 
-# Runtime server data (seeded automatically on first start)
-# Contains admin credential hash (admin.json) and live CMS content.
-server/data/
+# Ephemeral session store
 server/sessions/
+server/data/sessions.json
 
 # OS / editor noise
 Thumbs.db
 .DS_Store
 *.log
 npm-debug.log*
-
-# AI Agent & Assistant configurations
-.agent/
-.agents/
-.aider-desk/
-skills-lock.json
-
