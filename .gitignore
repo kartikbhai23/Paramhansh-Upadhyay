@@ -8,6 +8,13 @@ node_modules/
 server/sessions/
 server/data/sessions.json
 
+# Secrets & per-deployment data (never commit these)
+#  - admin.json holds the bcrypt password hash; on a public repo that is an
+#    offline-cracking target. It is (re)created from ADMIN_EMAIL/ADMIN_PASSWORD.
+#  - messages.json holds visitor-submitted contact details (privacy).
+server/data/admin.json
+server/data/messages.json
+
 # OS / editor noise
 Thumbs.db
 .DS_Store

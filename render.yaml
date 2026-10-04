@@ -1,0 +1,42 @@
+# Render Blueprint — deploys the full Node/Express app (public site + admin CMS).
+# Create the service via Render Dashboard → "New +" → "Blueprint" and point it
+# at this repo, or configure a Web Service manually with the same settings.
+#
+# Docs: https://render.com/docs/blueprint-spec
+services:
+  - type: web
+    name: safar-legal-trust
+    runtime: node
+    plan: free                 # change to "starter" if you attach the disk below
+    branch: main
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /
+    envVars:
+      - key: NODE_ENV
+        value: production        # marks session cookies Secure (HTTPS-only)
+      - key: TRUST_PROXY
+        value: "1"               # required: Render terminates TLS at its proxy
+      - key: SESSION_TTL_MINUTES
+        value: "120"
+      - key: SESSION_SECRET
+        generateValue: true      # Render generates a long random secret once
+      - key: ADMIN_EMAIL
+        sync: false              # set in the dashboard (Environment tab)
+      - key: ADMIN_PASSWORD
+        sync: false              # set in the dashboard — use a NEW strong password
+
+    # ---- OPTIONAL: persistent data (paid) -----------------------------------
+    # The free plan has an EPHEMERAL filesystem: CMS edits, contact messages and
+    # any admin password change are lost on every restart/redeploy. To keep them,
+    # switch plan to "starter" and uncomment the disk + DATA_DIR below. On first
+    # boot the disk is empty, so copy your current content.json onto it once via
+    # the Render Shell:  mkdir -p /var/data && cp server/data/content.json /var/data/
+    #
+    # disk:
+    #   name: data
+    #   mountPath: /var/data
+    #   sizeGB: 1
+    # (add to envVars:)
+    #   - key: DATA_DIR
+    #     value: /var/data

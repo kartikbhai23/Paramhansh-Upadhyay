@@ -10,7 +10,10 @@ const rateLimit = require('express-rate-limit');
 const seedContent = require('./defaults');
 
 const ROOT = path.join(__dirname, '..');
-const DATA_DIR = path.join(__dirname, 'data');
+// DATA_DIR can be pointed at a mounted persistent disk (e.g. DATA_DIR=/var/data
+// on Render) so CMS edits, messages and admin credentials survive restarts.
+// Falls back to server/data for local development.
+const DATA_DIR = process.env.DATA_DIR || path.join(__dirname, 'data');
 const SESSIONS_FILE = path.join(DATA_DIR, 'sessions.json');
 const CONTENT_FILE = path.join(DATA_DIR, 'content.json');
 const MESSAGES_FILE = path.join(DATA_DIR, 'messages.json');

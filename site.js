@@ -29,7 +29,7 @@
       { title: 'Social Impact', description: 'Bridging the gap between law and society' }
     ],
     settings: {
-      title: 'Safar Legal Trust | Legal Education, Mentorship & Practical Training',
+      title: 'Safar Legal Trust | Legal Education, Mentorship & Practical Internships',
       email: 'contact@safarlegaltrust.org',
       phone: '+91 98765 43210',
       address: 'New Delhi, India',
@@ -1009,6 +1009,12 @@
     const nav = document.getElementById('mainNav');
     if (!btn || !nav) return;
 
+    const closeMenu = () => {
+      nav.classList.remove('is-open');
+      btn.classList.remove('is-active');
+      document.body.style.overflow = '';
+    };
+
     btn.addEventListener('click', () => {
       const isOpen = nav.classList.toggle('is-open');
       btn.classList.toggle('is-active', isOpen);
@@ -1016,11 +1022,18 @@
     });
 
     nav.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        nav.classList.remove('is-open');
-        btn.classList.remove('is-active');
-        document.body.style.overflow = '';
-      });
+      link.addEventListener('click', closeMenu);
+    });
+
+    // Close on Escape for keyboard users
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && nav.classList.contains('is-open')) closeMenu();
+    });
+
+    // If the viewport grows past the drawer breakpoint (e.g. tablet rotated to
+    // landscape / desktop), reset so the scroll-lock never gets stranded.
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 1024 && nav.classList.contains('is-open')) closeMenu();
     });
   }
 
