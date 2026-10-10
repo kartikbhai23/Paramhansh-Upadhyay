@@ -141,7 +141,10 @@
   }
   function setImg(id, src) {
     const el = document.getElementById(id);
-    if (el && src) el.setAttribute('src', src);
+    if (el && src) {
+      const norm = (src.startsWith('http') || src.startsWith('data:') || src.startsWith('/')) ? src : '/' + src;
+      el.setAttribute('src', norm);
+    }
   }
 
   // --- Dynamic Content Rendering ---
@@ -301,7 +304,7 @@
       const m = embed.match(/src\s*=\s*["']([^"']+)["']/i);
       src = m ? m[1] : embed;
     } else if (s.address) {
-      src = 'https://www.google.com/maps?q=' + encodeURIComponent(s.address) + '&output=embed';
+      src = 'https://www.google.com/maps/embed?origin=mfe&pb=!1m2!2m1!1s' + encodeURIComponent(s.address);
     }
     if (src) wrap.innerHTML = `<iframe title="Trust location map" src="${esc(src)}" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>`;
   }
@@ -824,12 +827,13 @@
 
     // Helper to generate a gallery item HTML
     function itemHTML(m) {
-      const src = m.data || m.photo || m.url;
+      const rawSrc = m.data || m.photo || m.url;
+      const src = (rawSrc && !rawSrc.startsWith('http') && !rawSrc.startsWith('data:') && !rawSrc.startsWith('/')) ? '/' + rawSrc : rawSrc;
       const caption = m.caption || m.name || m.title || 'Institutional Documentation';
       const tag = m.tag || 'Documentation';
       return `
         <div class="gallery-item" data-src="${esc(src)}" data-caption="${esc(caption)}" data-tag="${esc(tag)}" tabindex="0" role="button" aria-label="View ${esc(caption)}">
-          <img src="${esc(src)}" alt="${esc(caption)}" loading="lazy">
+          <img src="${esc(src)}" alt="${esc(caption)}" width="600" height="448" loading="lazy">
           <div class="gallery-caption">
             <span class="gallery-caption__tag">${esc(tag)}</span>
             <div class="gallery-caption__title">${esc(caption)}</div>
@@ -917,9 +921,11 @@
       document.body.style.overflow = 'hidden';
     }
 
+    const EMPTY_SVG = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3C/svg%3E";
+
     function closeLb() {
       lightbox.style.display = 'none';
-      lbImg.src = '';
+      lbImg.src = EMPTY_SVG;
       document.body.style.overflow = '';
     }
 
@@ -941,10 +947,6 @@
     if (lbClose) lbClose.onclick = closeLb;
     if (lbBackdrop) lbBackdrop.onclick = closeLb;
 
-    // Bind the Escape-to-close handler only ONCE. wireLightbox() runs on every
-    // gallery render and every filter click, so the old inline binding leaked a
-    // new document 'keydown' listener each time. This self-contained handler
-    // looks the elements up fresh, so it stays correct across re-renders.
     if (!wireLightbox._escBound) {
       document.addEventListener('keydown', e => {
         if (e.key !== 'Escape') return;
@@ -952,7 +954,7 @@
         if (lb && lb.style.display === 'flex') {
           lb.style.display = 'none';
           const img = document.getElementById('galleryLightboxImg');
-          if (img) img.src = '';
+          if (img) img.src = EMPTY_SVG;
           document.body.style.overflow = '';
         }
       });

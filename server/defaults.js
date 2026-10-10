@@ -6,7 +6,7 @@ module.exports = {
     tagline: 'Safar Legal Trust is a legal and social organisation dedicated to creating awareness, opportunity, and support for law students, young legal professionals, and communities across India.',
     experience: '10+',
     bio: 'Adv. Paramhansh Upadhyay is the Founder of Safar Legal Trust, an organisation committed to promoting legal awareness, education, justice, and social empowerment.\n\nThrough the Trust, he aims to create meaningful opportunities for law students, young advocates, and communities to understand their rights and responsibilities. His vision is to build a strong network of legal minds that can contribute towards a more informed, accessible, and responsible society.\n\nWith a focus on knowledge, advocacy, and community development, Adv. Paramhansh Upadhyay seeks to bridge the gap between law and society. Safar Legal Trust represents his vision of creating positive change through law, awareness, and collective action.',
-    photo: 'assets/paramhansh-upadhyay.png',
+    photo: '/assets/paramhansh-upadhyay.png',
     facebook: 'https://www.facebook.com/ParamIAS700',
     instagram: 'https://www.instagram.com/paramhanshupadhyay/',
     youtube: 'https://www.youtube.com/@paramhanshupadhyay',
@@ -56,7 +56,7 @@ module.exports = {
     { title: 'Adv. Amit K. (Young Advocate)', description: 'A visionary platform bridging theory and real-world legal advocacy. The Trust is fostering an ethical, dedicated network of young legal professionals across India.' }
   ],
   team: [
-    { title: 'Adv. Paramhansh Upadhyay', role: 'Founder & Chairman', photo: 'assets/paramhansh-upadhyay.png', description: 'Founder of Safar Legal Trust, leading the vision to bridge law and society through education, legal awareness, and youth empowerment.' },
+    { title: 'Adv. Paramhansh Upadhyay', role: 'Founder & Chairman', photo: '/assets/paramhansh-upadhyay.png', description: 'Founder of Safar Legal Trust, leading the vision to bridge law and society through education, legal awareness, and youth empowerment.' },
     { title: 'Adv. Ananya Mehra', role: 'Head of Legal Aid & Research', photo: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80', description: 'Oversees community legal outreach, constitutional rights research, and pro bono legal assistance for marginalized individuals.' },
     { title: 'Rohan Kapoor', role: 'Director of Youth & Student Mentorship', photo: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=800&q=80', description: 'Leads nationwide student bootcamps, court observation initiatives, and skill development programs for aspiring legal professionals.' }
   ],
@@ -70,28 +70,28 @@ module.exports = {
   media: [
     {
       name: 'gallery-library.jpg',
-      data: 'assets/gallery-library.jpg',
+      data: '/assets/gallery-library.jpg',
       caption: "Advocate's Association Library & Case Law Analysis",
       tag: 'Research & Precedent',
       order: 1
     },
     {
       name: 'gallery-drafting.jpg',
-      data: 'assets/gallery-drafting.jpg',
+      data: '/assets/gallery-drafting.jpg',
       caption: 'Chamber Drafting Masterclass & Petition Review',
       tag: 'Procedural Lab',
       order: 2
     },
     {
       name: 'gallery-community.jpg',
-      data: 'assets/gallery-community.jpg',
+      data: '/assets/gallery-community.jpg',
       caption: 'Constitutional Literacy & Citizen Rights Workshop',
       tag: 'Grassroots Outreach',
       order: 3
     },
     {
       name: 'hero-courtroom.jpg',
-      data: 'assets/hero-courtroom.jpg',
+      data: '/assets/hero-courtroom.jpg',
       caption: 'Chambers & Trial Courtroom Decorum Study',
       tag: 'Courtroom Procedure',
       order: 4
@@ -103,9 +103,9 @@ module.exports = {
     phone: '+91 98765 43210',
     address: 'New Delhi, India',
     footer: 'Empowering Law. Inspiring Change. Knowledge • Justice • Opportunity • Social Impact',
-    logo: '',
-    heroImage: 'assets/hero-courtroom.jpg',
-    aboutImage: 'assets/gallery-library.jpg',
+    logo: '/assets/logo.png',
+    heroImage: '/assets/hero-courtroom.jpg',
+    aboutImage: '/assets/gallery-library.jpg',
     mapEmbed: '',
     visionText: '“To build a stronger and more inclusive legal community where knowledge of law becomes a tool for empowerment and positive social change.”',
     visionSlogan: 'Join the Safar. Shape the Future.',

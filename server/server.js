@@ -282,6 +282,14 @@ const messageLimiter = rateLimit({
   handler: function (req, res) { res.status(429).json({ error: 'Too many submissions. Please try again later.' }); }
 });
 
+// Prevent caching of dynamic and sensitive API responses
+app.use('/api', function (req, res, next) {
+  res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, private');
+  res.setHeader('Pragma', 'no-cache');
+  res.setHeader('Expires', '0');
+  next();
+});
+
 // ---- CSRF token endpoint ----------------------------------------------------
 app.get('/api/csrf', ensureCsrf, function (req, res) {
   res.json({ csrfToken: req.session.csrfToken });
@@ -389,11 +397,13 @@ app.delete('/api/admin/messages/:id', requireAuth, requireCsrf, function (req, r
 app.get('/admin/login', function (req, res) {
   // Prevent admin login page from being indexed by crawlers
   res.setHeader('X-Robots-Tag', 'noindex, nofollow');
+  res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, private');
   res.sendFile(path.join(ROOT, 'admin', 'login.html'));
 });
 app.get(['/admin', '/admin/', '/admin/index.html'], function (req, res) {
   // Prevent admin panel from being indexed by crawlers
   res.setHeader('X-Robots-Tag', 'noindex, nofollow');
+  res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, private');
   if (req.session && req.session.authenticated) return res.sendFile(path.join(ROOT, 'admin', 'index.html'));
   res.redirect('/admin/login');
 });
@@ -401,11 +411,43 @@ app.get(['/admin', '/admin/', '/admin/index.html'], function (req, res) {
 // ---- curated static assets (never expose server/, .env, package.json, .git) -
 // Only public front-end files are served; the admin HTML shell is gated above.
 app.use('/admin', express.static(path.join(ROOT, 'admin'), { index: false, dotfiles: 'ignore' }));
-app.use('/assets', express.static(path.join(ROOT, 'assets'), { dotfiles: 'ignore' }));
-['/styles.css', '/site.js', '/favicon.ico', '/favicon.svg'].forEach(function (f) {
-  app.get(f, function (req, res) {
-    res.sendFile(path.join(ROOT, f), function (err) { if (err) res.status(404).end(); });
-  });
+
+// Static assets caching & WebP content negotiation
+app.use('/assets', function (req, res, next) {
+  const accept = req.headers.accept || '';
+  if (accept.includes('image/webp')) {
+    const ext = path.extname(req.path).toLowerCase();
+    if (ext === '.jpg' || ext === '.jpeg' || ext === '.png') {
+      const webpPath = path.join(ROOT, 'assets', req.path.replace(/\.(jpg|jpeg|png)$/i, '.webp'));
+      if (fs.existsSync(webpPath)) {
+        res.setHeader('Content-Type', 'image/webp');
+        res.setHeader('Cache-Control', 'public, max-age=604800, stale-while-revalidate=86400');
+        res.setHeader('Vary', 'Accept');
+        return res.sendFile(webpPath);
+      }
+    }
+  }
+  next();
+});
+
+app.use('/assets', express.static(path.join(ROOT, 'assets'), {
+  dotfiles: 'ignore',
+  maxAge: '7d',
+  setHeaders: function (res) {
+    res.setHeader('Cache-Control', 'public, max-age=604800, stale-while-revalidate=86400');
+  }
+}));
+
+app.get(['/styles.css', '/site.js'], function (req, res) {
+  res.setHeader('Cache-Control', 'public, max-age=86400, must-revalidate'); // 1 day, must revalidate
+  res.sendFile(path.join(ROOT, req.path), function (err) { if (err) res.status(404).end(); });
+});
+
+app.get(['/favicon.ico', '/favicon.svg'], function (req, res) {
+  if (req.path.endsWith('.ico')) res.setHeader('Content-Type', 'image/x-icon');
+  else if (req.path.endsWith('.svg')) res.setHeader('Content-Type', 'image/svg+xml');
+  res.setHeader('Cache-Control', 'public, max-age=604800, stale-while-revalidate=86400'); // 7 days
+  res.sendFile(path.join(ROOT, req.path), function (err) { if (err) res.status(404).end(); });
 });
 // Helper functions for Server-Side Rendering (SSR) of articles
 function getPublishedArticles() {
@@ -473,7 +515,8 @@ app.get(['/articles', '/articles.html'], function (req, res) {
     const cardsHtml = articles.map(function (a, i) {
       const slug = articleSlug(a, i);
       const tag = a.tag || a.label || 'Legal Insight';
-      const img = a.image || a.photo;
+      const rawImg = a.image || a.photo;
+      const img = rawImg ? (rawImg.startsWith('http') || rawImg.startsWith('/') ? rawImg : '/' + rawImg) : null;
       const desc = a.description ? String(a.description).replace(/\n+/g, ' ').slice(0, 240) + '…' : '';
       return `
         <a class="article-card reveal-init" href="/article?a=${encodeURIComponent(slug)}">
@@ -495,8 +538,10 @@ app.get(['/articles', '/articles.html'], function (req, res) {
     }
 
     res.setHeader('Content-Type', 'text/html; charset=utf-8');
+    res.setHeader('Cache-Control', 'public, max-age=0, must-revalidate');
     res.send(html);
   } catch (err) {
+    res.setHeader('Cache-Control', 'public, max-age=0, must-revalidate');
     res.sendFile(path.join(ROOT, 'articles.html'));
   }
 });
@@ -509,6 +554,7 @@ app.get(['/article', '/article.html'], function (req, res) {
 
     if (!articles.length) {
       res.setHeader('Content-Type', 'text/html; charset=utf-8');
+      res.setHeader('Cache-Control', 'public, max-age=0, must-revalidate');
       return res.send(html);
     }
 
@@ -521,8 +567,9 @@ app.get(['/article', '/article.html'], function (req, res) {
     const a = articles[idx];
     const slug = articleSlug(a, idx);
     const tag = a.tag || a.label || 'Legal Insight';
-    const img = a.image || a.photo;
-    const fullImgUrl = img ? (img.startsWith('http') ? img : 'https://safarlegaltrust.in/' + img.replace(/^\//, '')) : 'https://safarlegaltrust.in/assets/hero-courtroom.jpg';
+    const rawImg = a.image || a.photo;
+    const img = rawImg ? (rawImg.startsWith('http') || rawImg.startsWith('/') ? rawImg : '/' + rawImg) : null;
+    const fullImgUrl = img ? (img.startsWith('http') ? img : 'https://safarlegaltrust.in' + (img.startsWith('/') ? img : '/' + img)) : 'https://safarlegaltrust.in/assets/hero-courtroom.jpg';
     const pageTitle = (a.title ? a.title : 'Legal Article') + ' | Safar Legal Trust';
     const pageUrl = 'https://safarlegaltrust.in/article?a=' + encodeURIComponent(slug);
     const rawDesc = (a.description || '').replace(/\s+/g, ' ').trim();
@@ -619,16 +666,20 @@ app.get(['/article', '/article.html'], function (req, res) {
     html = html.replace(/<div id="articleDetail" class="article-detail">[\s\S]*?<\/div>/, `<div id="articleDetail" class="article-detail">${detailHtml}</div>`);
 
     res.setHeader('Content-Type', 'text/html; charset=utf-8');
+    res.setHeader('Cache-Control', 'public, max-age=0, must-revalidate');
     res.send(html);
   } catch (err) {
+    res.setHeader('Cache-Control', 'public, max-age=0, must-revalidate');
     res.sendFile(path.join(ROOT, 'article.html'));
   }
 });
 
 app.get(['/gallery', '/gallery.html'], function (req, res) {
+  res.setHeader('Cache-Control', 'public, max-age=0, must-revalidate');
   res.sendFile(path.join(ROOT, 'gallery.html'));
 });
 app.get(['/', '/index.html'], function (req, res) {
+  res.setHeader('Cache-Control', 'public, max-age=0, must-revalidate');
   res.sendFile(path.join(ROOT, 'index.html'));
 });
 

@@ -7,7 +7,8 @@
   "scripts": {
     "start": "node server/server.js",
     "dev": "node server/server.js",
-    "seed": "node scripts/seed-admin.js"
+    "seed": "node scripts/seed-admin.js",
+    "test": "node scripts/verify-technical-audit.js"
   },
   "engines": {
     "node": ">=18"
