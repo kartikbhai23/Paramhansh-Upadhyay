@@ -1,6 +1,59 @@
+# robots.txt — Safar Legal Trust (https://safarlegaltrust.in)
+# Last updated: 2026-10-10
+
+# ── Default: allow all legitimate crawlers ───────────────────────────────────
 User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /admin
+Disallow: /api/
+
+# ── Google Search (web index) ─────────────────────────────────────────────────
+User-agent: Googlebot
 Allow: /
 Disallow: /admin/
 Disallow: /api/
 
+# ── Google AI (Gemini / AI Overviews) ────────────────────────────────────────
+# Allow Google-Extended so the site may appear in AI-generated answers.
+User-agent: Google-Extended
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+
+# ── ChatGPT Search (OAI-SearchBot) ───────────────────────────────────────────
+# OAI-SearchBot powers real-time ChatGPT Search results; allowing it improves
+# the chance of Safar Legal Trust being cited in ChatGPT Search answers.
+User-agent: OAI-SearchBot
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+
+# ── OpenAI model training (GPTBot) ───────────────────────────────────────────
+# GPTBot is used by OpenAI to crawl content for training future models.
+# Allowing it may increase the Trust's presence in AI-generated knowledge.
+User-agent: GPTBot
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+
+# ── Perplexity AI ────────────────────────────────────────────────────────────
+User-agent: PerplexityBot
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+
+# ── Anthropic Claude ─────────────────────────────────────────────────────────
+User-agent: ClaudeBot
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+
+# ── Bing / Microsoft Copilot ─────────────────────────────────────────────────
+User-agent: Bingbot
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+
+# ── Sitemap location ─────────────────────────────────────────────────────────
 Sitemap: https://safarlegaltrust.in/sitemap.xml

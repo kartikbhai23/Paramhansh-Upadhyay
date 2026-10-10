@@ -479,7 +479,99 @@
       const a = detailItems[idx];
       host.innerHTML = articleDetailHTML(a, detailItems, idx);
       try { history.replaceState(null, '', '/article?a=' + encodeURIComponent(articleSlug(a, idx))); } catch (e) {}
-      document.title = ((a && a.title) ? a.title : 'Article') + ' | Safar Legal Trust';
+
+      // --- Dynamic SEO meta updates for article detail pages ---
+      const slug = articleSlug(a, idx);
+      const pageTitle = ((a && a.title) ? a.title : 'Legal Article') + ' | Safar Legal Trust';
+      const pageUrl   = 'https://safarlegaltrust.in/article?a=' + encodeURIComponent(slug);
+      const pageDesc  = (a && a.description)
+        ? String(a.description).replace(/\n+/g, ' ').slice(0, 160)
+        : 'Read the full article from Safar Legal Trust on legal insights, constitutional rights, and community legal literacy in India.';
+      const pageImg   = (a && (a.image || a.photo)) || 'https://safarlegaltrust.in/assets/hero-courtroom.jpg';
+
+      document.title = pageTitle;
+
+      // Update <title id="metaTitle"> if present
+      var metaTitle = document.getElementById('metaTitle');
+      if (metaTitle) metaTitle.textContent = pageTitle;
+
+      // Update description
+      var metaDesc = document.getElementById('metaDescription');
+      if (metaDesc) metaDesc.setAttribute('content', pageDesc);
+
+      // Make page indexable now that we have real article content
+      var metaRobots = document.getElementById('metaRobots');
+      if (metaRobots) metaRobots.setAttribute('content', 'index, follow, max-snippet:-1, max-image-preview:large');
+
+      // Update canonical URL
+      var metaCanonical = document.getElementById('metaCanonical');
+      if (metaCanonical) metaCanonical.setAttribute('href', pageUrl);
+
+      // Update Open Graph tags
+      var ogUrl = document.getElementById('ogUrl');
+      if (ogUrl) ogUrl.setAttribute('content', pageUrl);
+      var ogTitle = document.getElementById('ogTitle');
+      if (ogTitle) ogTitle.setAttribute('content', pageTitle);
+      var ogDesc = document.getElementById('ogDescription');
+      if (ogDesc) ogDesc.setAttribute('content', pageDesc);
+      var ogImg = document.getElementById('ogImage');
+      if (ogImg) ogImg.setAttribute('content', pageImg.startsWith('http') ? pageImg : 'https://safarlegaltrust.in/' + pageImg.replace(/^\//, ''));
+
+      // Update Twitter/X Card tags
+      var twTitle = document.getElementById('twTitle');
+      if (twTitle) twTitle.setAttribute('content', pageTitle);
+      var twDesc = document.getElementById('twDescription');
+      if (twDesc) twDesc.setAttribute('content', pageDesc);
+      var twImg = document.getElementById('twImage');
+      if (twImg) twImg.setAttribute('content', pageImg.startsWith('http') ? pageImg : 'https://safarlegaltrust.in/' + pageImg.replace(/^\//, ''));
+
+      // Update BreadcrumbList JSON-LD
+      var breadcrumbLd = document.getElementById('breadcrumbJsonLd');
+      if (breadcrumbLd) {
+        try {
+          breadcrumbLd.textContent = JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'BreadcrumbList',
+            'itemListElement': [
+              { '@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://safarlegaltrust.in/' },
+              { '@type': 'ListItem', 'position': 2, 'name': 'Articles', 'item': 'https://safarlegaltrust.in/articles' },
+              { '@type': 'ListItem', 'position': 3, 'name': a.title || 'Article', 'item': pageUrl }
+            ]
+          });
+        } catch (e) {}
+      }
+
+      // Update BlogPosting JSON-LD
+      var articleLd = document.getElementById('articleJsonLd');
+      if (articleLd) {
+        try {
+          var ldObj = {
+            '@context': 'https://schema.org',
+            '@type': 'BlogPosting',
+            'headline': a.title || 'Legal Article',
+            'description': pageDesc,
+            'url': pageUrl,
+            'publisher': {
+              '@type': 'Organization',
+              '@id': 'https://safarlegaltrust.in/#organization',
+              'name': 'Safar Legal Trust'
+            },
+            'author': {
+              '@type': 'Person',
+              '@id': 'https://safarlegaltrust.in/#founder',
+              'name': 'Adv. Paramhansh Upadhyay'
+            },
+            'inLanguage': 'en-IN',
+            'mainEntityOfPage': { '@type': 'WebPage', 'url': pageUrl }
+          };
+          if (a.image || a.photo) {
+            ldObj.image = pageImg.startsWith('http') ? pageImg : 'https://safarlegaltrust.in/' + pageImg.replace(/^\//, '');
+          }
+          articleLd.textContent = JSON.stringify(ldObj);
+        } catch (e) {}
+      }
+      // --- end dynamic SEO ---
+
       wireDetailNav();
     };
     const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;

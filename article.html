@@ -3,11 +3,52 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Article | Safar Legal Trust</title>
-  <meta name="description" content="Read the full article from Safar Legal Trust — legal insights, commentary, and field notes on constitutional rights, advocacy, and community legal literacy.">
-    <link rel="canonical" href="https://safarlegaltrust.in/article">
+  <!-- Title and description are updated dynamically by site.js once the article loads -->
+  <title id="metaTitle">Legal Article | Safar Legal Trust</title>
+  <meta id="metaDescription" name="description" content="Read the full article from Safar Legal Trust — legal insights, commentary, and field notes on constitutional rights, advocacy, and community legal literacy in India.">
+  <!-- Default: noindex until JS resolves a valid article. If JS finds the article,
+       it removes this tag so the page becomes indexable. -->
+  <meta id="metaRobots" name="robots" content="noindex, follow">
+  <meta name="author" content="Safar Legal Trust">
+  <!-- Canonical is updated dynamically -->
+  <link id="metaCanonical" rel="canonical" href="https://safarlegaltrust.in/articles">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="alternate icon" href="/favicon.ico">
+
+  <!-- Open Graph (updated dynamically by site.js) -->
+  <meta property="og:type" content="article">
+  <meta id="ogUrl" property="og:url" content="https://safarlegaltrust.in/articles">
+  <meta id="ogTitle" property="og:title" content="Legal Article | Safar Legal Trust">
+  <meta id="ogDescription" property="og:description" content="Read the full article from Safar Legal Trust on constitutional rights, advocacy, and community legal literacy in India.">
+  <meta id="ogImage" property="og:image" content="https://safarlegaltrust.in/assets/hero-courtroom.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:site_name" content="Safar Legal Trust">
+  <meta property="og:locale" content="en_IN">
+
+  <!-- Twitter / X Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta id="twTitle" name="twitter:title" content="Legal Article | Safar Legal Trust">
+  <meta id="twDescription" name="twitter:description" content="Read the full article from Safar Legal Trust on legal insights, constitutional rights, and community legal literacy in India.">
+  <meta id="twImage" name="twitter:image" content="https://safarlegaltrust.in/assets/hero-courtroom.jpg">
+
+  <!-- JSON-LD: BreadcrumbList (static fallback; dynamically enhanced by site.js) -->
+  <script id="breadcrumbJsonLd" type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://safarlegaltrust.in/" },
+      { "@type": "ListItem", "position": 2, "name": "Articles", "item": "https://safarlegaltrust.in/articles" }
+    ]
+  }
+  </script>
+
+  <!-- JSON-LD: BlogPosting (populated dynamically by site.js when article data loads) -->
+  <script id="articleJsonLd" type="application/ld+json">
+  {}
+  </script>
+
   <link rel="stylesheet" href="styles.css">
   <script>
     (function(){
@@ -109,7 +150,6 @@
       <p id="footerCopyright">&copy; 2026 Safar Legal Trust. All rights reserved.</p>
       <div class="footer-bottom-links">
         <a href="index.html#home">Back to home</a>
-        <a href="admin/login.html" class="admin-tag-link">Admin Portal</a>
       </div>
     </div>
   </div>

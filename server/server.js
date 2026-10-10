@@ -387,9 +387,13 @@ app.delete('/api/admin/messages/:id', requireAuth, requireCsrf, function (req, r
 
 // ---- admin pages: gate the panel BEFORE any static file handler ------------
 app.get('/admin/login', function (req, res) {
+  // Prevent admin login page from being indexed by crawlers
+  res.setHeader('X-Robots-Tag', 'noindex, nofollow');
   res.sendFile(path.join(ROOT, 'admin', 'login.html'));
 });
 app.get(['/admin', '/admin/', '/admin/index.html'], function (req, res) {
+  // Prevent admin panel from being indexed by crawlers
+  res.setHeader('X-Robots-Tag', 'noindex, nofollow');
   if (req.session && req.session.authenticated) return res.sendFile(path.join(ROOT, 'admin', 'index.html'));
   res.redirect('/admin/login');
 });
@@ -406,10 +410,12 @@ app.use('/assets', express.static(path.join(ROOT, 'assets'), { dotfiles: 'ignore
 // SEO files
 app.get('/sitemap.xml', function (req, res) {
   res.setHeader('Content-Type', 'application/xml; charset=utf-8');
+  res.setHeader('Cache-Control', 'public, max-age=86400'); // 24 h
   res.sendFile(path.join(ROOT, 'sitemap.xml'), function (err) { if (err) res.status(404).end(); });
 });
 app.get('/robots.txt', function (req, res) {
   res.setHeader('Content-Type', 'text/plain; charset=utf-8');
+  res.setHeader('Cache-Control', 'public, max-age=86400'); // 24 h
   res.sendFile(path.join(ROOT, 'robots.txt'), function (err) { if (err) res.status(404).end(); });
 });
 app.get(['/articles', '/articles.html'], function (req, res) {
