@@ -195,7 +195,19 @@ app.disable('x-powered-by');
 // app is exposed directly, so clients can't spoof X-Forwarded-For to reset
 // their rate-limit bucket.
 app.set('trust proxy', Number(process.env.TRUST_PROXY) || 0);
-app.use(helmet({ contentSecurityPolicy: false }));
+app.use(helmet({
+  contentSecurityPolicy: false,
+  crossOriginResourcePolicy: false,
+  crossOriginEmbedderPolicy: false,
+}));
+
+// Ensure CSS files are always served with the correct MIME type
+app.use(function (req, res, next) {
+  if (req.path.endsWith('.css')) {
+    res.setHeader('Content-Type', 'text/css; charset=utf-8');
+  }
+  next();
+});
 app.use(express.json({ limit: '20mb' }));
 app.use(express.urlencoded({ extended: false }));
 
