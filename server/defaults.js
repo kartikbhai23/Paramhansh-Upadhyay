@@ -80,7 +80,7 @@ module.exports = {
     }
   ],
   settings: {
-    title: 'Safar Legal Trust | Empowering Law. Inspiring Change.',
+    title: 'Safar Legal Trust | Legal Education & Mentorship',
     email: 'contact@safarlegaltrust.org',
     phone: '+91 98765 43210',
     address: 'New Delhi, India',

@@ -29,7 +29,7 @@
       { title: 'Social Impact', description: 'Bridging the gap between law and society' }
     ],
     settings: {
-      title: 'Safar Legal Trust | Legal Education, Mentorship & Practical Internships',
+      title: 'Safar Legal Trust | Legal Education & Mentorship',
       email: 'contact@safarlegaltrust.org',
       phone: '+91 98765 43210',
       address: 'New Delhi, India',

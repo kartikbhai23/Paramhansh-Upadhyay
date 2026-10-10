@@ -196,10 +196,44 @@ app.disable('x-powered-by');
 // their rate-limit bucket.
 app.set('trust proxy', Number(process.env.TRUST_PROXY) || 0);
 app.use(helmet({
-  contentSecurityPolicy: false,
+  contentSecurityPolicy: false,   // managed manually below
   crossOriginResourcePolicy: false,
   crossOriginEmbedderPolicy: false,
 }));
+
+// ---- Security headers (CSP + Permissions-Policy) ----------------------------
+app.use(function (req, res, next) {
+  // Content-Security-Policy
+  // Allows:
+  //   self-hosted scripts/styles/images/fonts
+  //   Google Fonts (for any future font CDN use)
+  //   Google Maps iframes (contact section map embed)
+  //   Unsplash images (used in team/gallery seed data)
+  //   data: URIs (base64 uploaded images stored in CMS)
+  // Blocks everything else by default.
+  res.setHeader('Content-Security-Policy',
+    [
+      "default-src 'self'",
+      "script-src 'self' 'unsafe-inline'",          // inline theme-init & JSON-LD scripts
+      "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+      "font-src 'self' https://fonts.gstatic.com",
+      "img-src 'self' data: https://images.unsplash.com https://safarlegaltrust.in",
+      "frame-src https://www.google.com",           // Maps embed
+      "connect-src 'self'",
+      "object-src 'none'",
+      "base-uri 'self'",
+      "form-action 'self'",
+      "frame-ancestors 'none'"
+    ].join('; ')
+  );
+
+  // Permissions-Policy — disable capabilities not used by this site
+  res.setHeader('Permissions-Policy',
+    'camera=(), microphone=(), geolocation=(), payment=(), usb=(), magnetometer=(), gyroscope=()'
+  );
+
+  next();
+});
 
 // Ensure CSS files are always served with the correct MIME type
 app.use(function (req, res, next) {
@@ -364,10 +398,19 @@ app.get(['/admin', '/admin/', '/admin/index.html'], function (req, res) {
 // Only public front-end files are served; the admin HTML shell is gated above.
 app.use('/admin', express.static(path.join(ROOT, 'admin'), { index: false, dotfiles: 'ignore' }));
 app.use('/assets', express.static(path.join(ROOT, 'assets'), { dotfiles: 'ignore' }));
-['/styles.css', '/site.js', '/favicon.ico'].forEach(function (f) {
+['/styles.css', '/site.js', '/favicon.ico', '/favicon.svg'].forEach(function (f) {
   app.get(f, function (req, res) {
     res.sendFile(path.join(ROOT, f), function (err) { if (err) res.status(404).end(); });
   });
+});
+// SEO files
+app.get('/sitemap.xml', function (req, res) {
+  res.setHeader('Content-Type', 'application/xml; charset=utf-8');
+  res.sendFile(path.join(ROOT, 'sitemap.xml'), function (err) { if (err) res.status(404).end(); });
+});
+app.get('/robots.txt', function (req, res) {
+  res.setHeader('Content-Type', 'text/plain; charset=utf-8');
+  res.sendFile(path.join(ROOT, 'robots.txt'), function (err) { if (err) res.status(404).end(); });
 });
 app.get(['/articles', '/articles.html'], function (req, res) {
   res.sendFile(path.join(ROOT, 'articles.html'));
