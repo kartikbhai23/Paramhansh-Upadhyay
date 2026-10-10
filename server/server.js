@@ -407,11 +407,50 @@ app.use('/assets', express.static(path.join(ROOT, 'assets'), { dotfiles: 'ignore
     res.sendFile(path.join(ROOT, f), function (err) { if (err) res.status(404).end(); });
   });
 });
+// Helper functions for Server-Side Rendering (SSR) of articles
+function getPublishedArticles() {
+  const c = readJson(CONTENT_FILE, seedContent);
+  if (Array.isArray(c.cases) && c.cases.length) return c.cases;
+  if (Array.isArray(c.articles) && c.articles.length) return c.articles;
+  if (Array.isArray(seedContent.cases) && seedContent.cases.length) return seedContent.cases;
+  return [];
+}
+
+function articleSlug(a, idx) {
+  const base = (a && a.title ? String(a.title) : '').toLowerCase().trim()
+    .replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+  return base || ('article-' + (idx + 1));
+}
+
+function escHtml(s) {
+  return String(s == null ? '' : s).replace(/[&<>'"]/g, function (c) {
+    return { '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[c];
+  });
+}
+
+function paragraphizeHtml(text) {
+  const paras = String(text || '').split(/\n\s*\n/).map(function (t) { return t.trim(); }).filter(Boolean);
+  if (!paras.length) return '<p>Full details for this article are coming soon.</p>';
+  return paras.map(function (t) { return '<p>' + escHtml(t).replace(/\n/g, '<br>') + '</p>'; }).join('');
+}
+
 // SEO files
 app.get('/sitemap.xml', function (req, res) {
   res.setHeader('Content-Type', 'application/xml; charset=utf-8');
   res.setHeader('Cache-Control', 'public, max-age=86400'); // 24 h
-  res.sendFile(path.join(ROOT, 'sitemap.xml'), function (err) { if (err) res.status(404).end(); });
+  try {
+    const articles = getPublishedArticles();
+    let articleUrlsXml = '';
+    articles.forEach(function (a, i) {
+      const slug = articleSlug(a, i);
+      const date = (a.date || '2026-10-10').split('T')[0];
+      articleUrlsXml += '\n  <url>\n    <loc>https://safarlegaltrust.in/article?a=' + encodeURIComponent(slug) + '</loc>\n    <lastmod>' + date + '</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.7</priority>\n  </url>';
+    });
+    const xml = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n  <url>\n    <loc>https://safarlegaltrust.in/</loc>\n    <lastmod>2026-10-10</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>1.0</priority>\n  </url>\n  <url>\n    <loc>https://safarlegaltrust.in/articles</loc>\n    <lastmod>2026-10-10</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>0.8</priority>\n  </url>\n  <url>\n    <loc>https://safarlegaltrust.in/gallery</loc>\n    <lastmod>2026-10-10</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.6</priority>\n  </url>' + articleUrlsXml + '\n</urlset>';
+    res.send(xml);
+  } catch (err) {
+    res.sendFile(path.join(ROOT, 'sitemap.xml'));
+  }
 });
 app.get('/robots.txt', function (req, res) {
   res.setHeader('Content-Type', 'text/plain; charset=utf-8');
@@ -424,12 +463,168 @@ app.get('/llms.txt', function (req, res) {
   res.setHeader('Cache-Control', 'public, max-age=86400'); // 24 h
   res.sendFile(path.join(ROOT, 'llms.txt'), function (err) { if (err) res.status(404).end(); });
 });
+
+// SSR for /articles — renders article titles, excerpts, tags & crawlable links into initial HTML
 app.get(['/articles', '/articles.html'], function (req, res) {
-  res.sendFile(path.join(ROOT, 'articles.html'));
+  try {
+    const articles = getPublishedArticles();
+    let html = fs.readFileSync(path.join(ROOT, 'articles.html'), 'utf8');
+
+    const cardsHtml = articles.map(function (a, i) {
+      const slug = articleSlug(a, i);
+      const tag = a.tag || a.label || 'Legal Insight';
+      const img = a.image || a.photo;
+      const desc = a.description ? String(a.description).replace(/\n+/g, ' ').slice(0, 240) + '…' : '';
+      return `
+        <a class="article-card reveal-init" href="/article?a=${encodeURIComponent(slug)}">
+          ${img ? `<div class="article-card__media"><img src="${escHtml(img)}" alt="${escHtml(a.title || '')}" loading="lazy"></div>` : ''}
+          <div class="article-card__body">
+            <span class="article-card__tag">${escHtml(tag)}</span>
+            <h2 class="article-card__title" style="font-size:1.25rem;">${escHtml(a.title || 'Untitled Article')}</h2>
+            <p class="article-card__excerpt">${escHtml(desc)}</p>
+            <span class="article-card__more">Read Article &rarr;</span>
+          </div>
+        </a>`;
+    }).join('');
+
+    if (cardsHtml) {
+      html = html.replace(
+        /<div class="articles-grid" id="articlesFullGrid">[\s\S]*?<\/div>/,
+        '<div class="articles-grid" id="articlesFullGrid">' + cardsHtml + '</div>'
+      );
+    }
+
+    res.setHeader('Content-Type', 'text/html; charset=utf-8');
+    res.send(html);
+  } catch (err) {
+    res.sendFile(path.join(ROOT, 'articles.html'));
+  }
 });
+
+// SSR for /article — renders individual article detail, meta tags, and BlogPosting schema into initial HTML
 app.get(['/article', '/article.html'], function (req, res) {
-  res.sendFile(path.join(ROOT, 'article.html'));
+  try {
+    const articles = getPublishedArticles();
+    let html = fs.readFileSync(path.join(ROOT, 'article.html'), 'utf8');
+
+    if (!articles.length) {
+      res.setHeader('Content-Type', 'text/html; charset=utf-8');
+      return res.send(html);
+    }
+
+    const querySlug = req.query.a ? String(req.query.a).trim().toLowerCase() : '';
+    const queryId = parseInt(req.query.id, 10);
+    let idx = querySlug ? articles.findIndex(function (a, i) { return articleSlug(a, i) === querySlug; }) : -1;
+    if (idx < 0 && !isNaN(queryId) && articles[queryId]) idx = queryId;
+    if (idx < 0) idx = 0;
+
+    const a = articles[idx];
+    const slug = articleSlug(a, idx);
+    const tag = a.tag || a.label || 'Legal Insight';
+    const img = a.image || a.photo;
+    const fullImgUrl = img ? (img.startsWith('http') ? img : 'https://safarlegaltrust.in/' + img.replace(/^\//, '')) : 'https://safarlegaltrust.in/assets/hero-courtroom.jpg';
+    const pageTitle = (a.title ? a.title : 'Legal Article') + ' | Safar Legal Trust';
+    const pageUrl = 'https://safarlegaltrust.in/article?a=' + encodeURIComponent(slug);
+    const rawDesc = (a.description || '').replace(/\s+/g, ' ').trim();
+    const pageDesc = rawDesc.slice(0, 155) + (rawDesc.length > 155 ? '…' : '');
+    const pubDate = a.date ? (a.date.includes('T') ? a.date : a.date + 'T10:00:00+05:30') : '2026-01-15T10:00:00+05:30';
+
+    const n = articles.length;
+    const prevIdx = (idx - 1 + n) % n;
+    const nextIdx = (idx + 1) % n;
+    const prevSlug = articleSlug(articles[prevIdx], prevIdx);
+    const nextSlug = articleSlug(articles[nextIdx], nextIdx);
+
+    const detailHtml = `
+      <a class="article-full__back" href="/articles">&larr; All Articles</a>
+      <article class="article-full">
+        <header class="article-full__head">
+          <span class="article-card__tag">${escHtml(tag)}</span>
+          <h1 class="article-full__title">${escHtml(a.title || 'Untitled Article')}</h1>
+        </header>
+        ${img ? `<div class="article-full__media"><img src="${escHtml(img)}" alt="${escHtml(a.title || '')}"></div>` : ''}
+        <div class="article-full__body">${paragraphizeHtml(a.description)}</div>
+        ${n > 1 ? `
+        <nav class="article-full__nav">
+          <a href="/article?a=${encodeURIComponent(prevSlug)}" class="article-nav-btn" data-nav="prev">
+            <span class="article-nav-btn__dir">&larr; Previous</span>
+            <span class="article-nav-btn__title">${escHtml(articles[prevIdx].title || 'Previous')}</span>
+          </a>
+          <a href="/article?a=${encodeURIComponent(nextSlug)}" class="article-nav-btn article-nav-btn--next" data-nav="next">
+            <span class="article-nav-btn__dir">Next &rarr;</span>
+            <span class="article-nav-btn__title">${escHtml(articles[nextIdx].title || 'Next')}</span>
+          </a>
+        </nav>` : ''}
+      </article>`;
+
+    // Replace Title & Description
+    html = html.replace(/<title id="metaTitle">[\s\S]*?<\/title>/, `<title id="metaTitle">${escHtml(pageTitle)}</title>`);
+    html = html.replace(/<meta id="metaDescription" name="description" content="[\s\S]*?">/, `<meta id="metaDescription" name="description" content="${escHtml(pageDesc)}">`);
+    html = html.replace(/<meta id="metaRobots" name="robots" content="[\s\S]*?">/, '<meta id="metaRobots" name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">');
+    html = html.replace(/<link id="metaCanonical" rel="canonical" href="[\s\S]*?">/, `<link id="metaCanonical" rel="canonical" href="${pageUrl}">`);
+
+    // Replace Open Graph
+    html = html.replace(/<meta id="ogUrl" property="og:url" content="[\s\S]*?">/, `<meta id="ogUrl" property="og:url" content="${pageUrl}">`);
+    html = html.replace(/<meta id="ogTitle" property="og:title" content="[\s\S]*?">/, `<meta id="ogTitle" property="og:title" content="${escHtml(pageTitle)}">`);
+    html = html.replace(/<meta id="ogDescription" property="og:description" content="[\s\S]*?">/, `<meta id="ogDescription" property="og:description" content="${escHtml(pageDesc)}">`);
+    html = html.replace(/<meta id="ogImage" property="og:image" content="[\s\S]*?">/, `<meta id="ogImage" property="og:image" content="${fullImgUrl}">`);
+
+    // Replace Twitter
+    html = html.replace(/<meta id="twTitle" name="twitter:title" content="[\s\S]*?">/, `<meta id="twTitle" name="twitter:title" content="${escHtml(pageTitle)}">`);
+    html = html.replace(/<meta id="twDescription" name="twitter:description" content="[\s\S]*?">/, `<meta id="twDescription" name="twitter:description" content="${escHtml(pageDesc)}">`);
+    html = html.replace(/<meta id="twImage" name="twitter:image" content="[\s\S]*?">/, `<meta id="twImage" name="twitter:image" content="${fullImgUrl}">`);
+
+    // Replace Breadcrumb JSON-LD
+    const breadcrumbLd = {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      'itemListElement': [
+        { '@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://safarlegaltrust.in/' },
+        { '@type': 'ListItem', 'position': 2, 'name': 'Articles & Legal Insights', 'item': 'https://safarlegaltrust.in/articles' },
+        { '@type': 'ListItem', 'position': 3, 'name': a.title || 'Article', 'item': pageUrl }
+      ]
+    };
+    html = html.replace(/<script id="breadcrumbJsonLd" type="application\/ld\+json">[\s\S]*?<\/script>/, `<script id="breadcrumbJsonLd" type="application/ld+json">\n${JSON.stringify(breadcrumbLd, null, 2)}\n</script>`);
+
+    // Replace BlogPosting JSON-LD
+    const blogPostingLd = {
+      '@context': 'https://schema.org',
+      '@type': 'BlogPosting',
+      'headline': a.title || 'Legal Article',
+      'description': pageDesc,
+      'url': pageUrl,
+      'mainEntityOfPage': {
+        '@type': 'WebPage',
+        '@id': pageUrl
+      },
+      'publisher': {
+        '@type': 'Organization',
+        '@id': 'https://safarlegaltrust.in/#organization',
+        'name': 'Safar Legal Trust'
+      },
+      'author': {
+        '@type': 'Person',
+        '@id': 'https://safarlegaltrust.in/#founder',
+        'name': 'Adv. Paramhansh Upadhyay'
+      },
+      'datePublished': pubDate,
+      'dateModified': pubDate,
+      'inLanguage': 'en-IN',
+      'articleSection': tag
+    };
+    if (img) blogPostingLd.image = fullImgUrl;
+    html = html.replace(/<script id="articleJsonLd" type="application\/ld\+json">[\s\S]*?<\/script>/, `<script id="articleJsonLd" type="application/ld+json">\n${JSON.stringify(blogPostingLd, null, 2)}\n</script>`);
+
+    // Replace article body
+    html = html.replace(/<div id="articleDetail" class="article-detail">[\s\S]*?<\/div>/, `<div id="articleDetail" class="article-detail">${detailHtml}</div>`);
+
+    res.setHeader('Content-Type', 'text/html; charset=utf-8');
+    res.send(html);
+  } catch (err) {
+    res.sendFile(path.join(ROOT, 'article.html'));
+  }
 });
+
 app.get(['/gallery', '/gallery.html'], function (req, res) {
   res.sendFile(path.join(ROOT, 'gallery.html'));
 });

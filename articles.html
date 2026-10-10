@@ -65,6 +65,36 @@
   }
   </script>
 
+  <!-- JSON-LD: ItemList -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Articles & Legal Insights by Safar Legal Trust",
+    "description": "Educational articles, research notes, and commentary on constitutional rights, advocacy, and legal aid across India.",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Pan-India Legal Literacy Drive",
+        "url": "https://safarlegaltrust.in/article?a=pan-india-legal-literacy-drive"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Youth Advocacy & Mentorship Bootcamps",
+        "url": "https://safarlegaltrust.in/article?a=youth-advocacy-mentorship-bootcamps"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Grassroots Community Aid & Support",
+        "url": "https://safarlegaltrust.in/article?a=grassroots-community-aid-support"
+      }
+    ]
+  }
+  </script>
+
   <link rel="stylesheet" href="styles.css">
   <script>
     (function(){
@@ -129,7 +159,30 @@
       </div>
 
       <div class="articles-grid" id="articlesFullGrid">
-        <p class="articles-empty">Loading articles&hellip;</p>
+        <a class="article-card reveal-init" href="/article?a=pan-india-legal-literacy-drive">
+          <div class="article-card__body">
+            <span class="article-card__tag">Constitutional Literacy</span>
+            <h2 class="article-card__title" style="font-size:1.25rem;">Pan-India Legal Literacy Drive</h2>
+            <p class="article-card__excerpt">Constitutional literacy is the bedrock of an empowered democracy. Across India, millions of citizens interact daily with administrative and judicial systems without a working knowledge of their fundamental rights. Discover how our community workshops translate complex statutes into practical rights remedies.</p>
+            <span class="article-card__more">Read Article &rarr;</span>
+          </div>
+        </a>
+        <a class="article-card reveal-init" href="/article?a=youth-advocacy-mentorship-bootcamps">
+          <div class="article-card__body">
+            <span class="article-card__tag">Advocacy &amp; Mentorship</span>
+            <h2 class="article-card__title" style="font-size:1.25rem;">Youth Advocacy &amp; Mentorship Bootcamps</h2>
+            <p class="article-card__excerpt">The transition from academic law lecture halls to practical courtroom litigation represents one of the steepest learning curves for young advocates. Explore how our chamber mentorship programs equip aspiring litigators with practical drafting skills, courtroom decorum, and trial advocacy foundations.</p>
+            <span class="article-card__more">Read Article &rarr;</span>
+          </div>
+        </a>
+        <a class="article-card reveal-init" href="/article?a=grassroots-community-aid-support">
+          <div class="article-card__body">
+            <span class="article-card__tag">Legal Aid &amp; Access</span>
+            <h2 class="article-card__title" style="font-size:1.25rem;">Grassroots Community Aid &amp; Support</h2>
+            <p class="article-card__excerpt">Access to timely legal guidance should not depend on economic privilege. Guided by the constitutional mandate of Article 39A, Safar Legal Trust connects underprivileged families with reliable guidance, institutional legal aid pathways, and dispute resolution mechanisms.</p>
+            <span class="article-card__more">Read Article &rarr;</span>
+          </div>
+        </a>
       </div>
     </div>
   </section>
@@ -149,21 +202,24 @@
         <ul class="footer-links">
           <li><a href="index.html#about">About the Trust</a></li>
           <li><a href="index.html#pillars">The Four Pillars</a></li>
-          <li><a href="index.html#founder">Founder</a></li>
+          <li><a href="index.html#founder">Founder &amp; Leadership</a></li>
+          <li><a href="index.html#team">Our Team</a></li>
         </ul>
       </div>
       <div class="footer-col">
         <h4>Engage</h4>
         <ul class="footer-links">
-          <li><a href="articles.html">Articles</a></li>
-          <li><a href="gallery.html">Gallery</a></li>
-          <li><a href="index.html#testimonials">Client Feedback</a></li>
-          <li><a href="index.html#admissions">Apply / Enquire</a></li>
+          <li><a href="articles.html">Legal Articles &amp; Insights</a></li>
+          <li><a href="gallery.html">Institutional Gallery</a></li>
+          <li><a href="index.html#testimonials">Student Feedback</a></li>
+          <li><a href="index.html#admissions">Enrollment &amp; Inquiries</a></li>
         </ul>
       </div>
       <div class="footer-col">
         <h4>Contact</h4>
         <ul class="footer-links">
+          <li><a href="index.html#contact">Chambers &amp; Office</a></li>
+          <li><a href="index.html#faq">Frequently Asked Questions</a></li>
           <li><a href="mailto:contact@safarlegaltrust.org" id="footerEmail">contact@safarlegaltrust.org</a></li>
           <li><a href="tel:+919876543210" id="footerPhone">+91 98765 43210</a></li>
           <li><span id="footerAddress">New Delhi, India</span></li>

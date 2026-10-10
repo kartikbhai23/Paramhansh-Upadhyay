@@ -3,23 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Title and description are updated dynamically by site.js once the article loads -->
-  <title id="metaTitle">Legal Article | Safar Legal Trust</title>
-  <meta id="metaDescription" name="description" content="Read the full article from Safar Legal Trust — legal insights, commentary, and field notes on constitutional rights, advocacy, and community legal literacy in India.">
-  <!-- Default: noindex until JS resolves a valid article. If JS finds the article,
-       it removes this tag so the page becomes indexable. -->
-  <meta id="metaRobots" name="robots" content="noindex, follow">
-  <meta name="author" content="Safar Legal Trust">
+  <!-- Title and description are updated dynamically by site.js and server SSR -->
+  <title id="metaTitle">Pan-India Legal Literacy Drive | Safar Legal Trust</title>
+  <meta id="metaDescription" name="description" content="Discover how Safar Legal Trust conducts pan-India legal literacy workshops empowering citizens and students with fundamental constitutional and statutory rights.">
+  <meta id="metaRobots" name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+  <meta name="author" content="Adv. Paramhansh Upadhyay, Safar Legal Trust">
   <!-- Canonical is updated dynamically -->
-  <link id="metaCanonical" rel="canonical" href="https://safarlegaltrust.in/articles">
+  <link id="metaCanonical" rel="canonical" href="https://safarlegaltrust.in/article?a=pan-india-legal-literacy-drive">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="alternate icon" href="/favicon.ico">
 
-  <!-- Open Graph (updated dynamically by site.js) -->
+  <!-- Open Graph (updated dynamically by site.js and server SSR) -->
   <meta property="og:type" content="article">
-  <meta id="ogUrl" property="og:url" content="https://safarlegaltrust.in/articles">
-  <meta id="ogTitle" property="og:title" content="Legal Article | Safar Legal Trust">
-  <meta id="ogDescription" property="og:description" content="Read the full article from Safar Legal Trust on constitutional rights, advocacy, and community legal literacy in India.">
+  <meta id="ogUrl" property="og:url" content="https://safarlegaltrust.in/article?a=pan-india-legal-literacy-drive">
+  <meta id="ogTitle" property="og:title" content="Pan-India Legal Literacy Drive | Safar Legal Trust">
+  <meta id="ogDescription" property="og:description" content="Discover how Safar Legal Trust conducts pan-India legal literacy workshops empowering citizens and students with fundamental constitutional and statutory rights.">
   <meta id="ogImage" property="og:image" content="https://safarlegaltrust.in/assets/hero-courtroom.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
@@ -28,25 +26,50 @@
 
   <!-- Twitter / X Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta id="twTitle" name="twitter:title" content="Legal Article | Safar Legal Trust">
-  <meta id="twDescription" name="twitter:description" content="Read the full article from Safar Legal Trust on legal insights, constitutional rights, and community legal literacy in India.">
+  <meta id="twTitle" name="twitter:title" content="Pan-India Legal Literacy Drive | Safar Legal Trust">
+  <meta id="twDescription" name="twitter:description" content="Discover how Safar Legal Trust conducts pan-India legal literacy workshops empowering citizens and students with fundamental constitutional and statutory rights.">
   <meta id="twImage" name="twitter:image" content="https://safarlegaltrust.in/assets/hero-courtroom.jpg">
 
-  <!-- JSON-LD: BreadcrumbList (static fallback; dynamically enhanced by site.js) -->
+  <!-- JSON-LD: BreadcrumbList (static fallback; dynamically enhanced by site.js and server SSR) -->
   <script id="breadcrumbJsonLd" type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
       { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://safarlegaltrust.in/" },
-      { "@type": "ListItem", "position": 2, "name": "Articles", "item": "https://safarlegaltrust.in/articles" }
+      { "@type": "ListItem", "position": 2, "name": "Articles & Legal Insights", "item": "https://safarlegaltrust.in/articles" },
+      { "@type": "ListItem", "position": 3, "name": "Pan-India Legal Literacy Drive", "item": "https://safarlegaltrust.in/article?a=pan-india-legal-literacy-drive" }
     ]
   }
   </script>
 
-  <!-- JSON-LD: BlogPosting (populated dynamically by site.js when article data loads) -->
+  <!-- JSON-LD: BlogPosting (populated dynamically by server SSR and site.js) -->
   <script id="articleJsonLd" type="application/ld+json">
-  {}
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Pan-India Legal Literacy Drive",
+    "description": "Discover how Safar Legal Trust conducts pan-India legal literacy workshops empowering citizens and students with fundamental constitutional and statutory rights.",
+    "url": "https://safarlegaltrust.in/article?a=pan-india-legal-literacy-drive",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://safarlegaltrust.in/article?a=pan-india-legal-literacy-drive"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "@id": "https://safarlegaltrust.in/#organization",
+      "name": "Safar Legal Trust"
+    },
+    "author": {
+      "@type": "Person",
+      "@id": "https://safarlegaltrust.in/#founder",
+      "name": "Adv. Paramhansh Upadhyay"
+    },
+    "datePublished": "2026-01-15T10:00:00+05:30",
+    "dateModified": "2026-01-15T10:00:00+05:30",
+    "inLanguage": "en-IN",
+    "articleSection": "Constitutional Literacy"
+  }
   </script>
 
   <link rel="stylesheet" href="styles.css">
@@ -105,7 +128,27 @@
   <section class="section section--surface article-detail-section">
     <div class="container">
       <div id="articleDetail" class="article-detail">
-        <p class="articles-empty">Loading article&hellip;</p>
+        <a class="article-full__back" href="/articles">&larr; All Articles</a>
+        <article class="article-full">
+          <header class="article-full__head">
+            <span class="article-card__tag">Constitutional Literacy</span>
+            <h1 class="article-full__title">Pan-India Legal Literacy Drive</h1>
+          </header>
+          <div class="article-full__body">
+            <p>Constitutional literacy is the bedrock of an empowered democracy. Across India, millions of citizens interact daily with administrative and judicial systems without a working knowledge of their fundamental rights under Part III of the Constitution of India. Safar Legal Trust initiates pan-India legal literacy workshops designed to translate statutory remedies into clear, actionable knowledge.</p>
+            <p>These outreach sessions demystify essential legal procedures, including First Information Reports (FIRs), consumer complaint mechanisms under the Consumer Protection Act, right to information applications, and remedies available under Article 226 and Article 32. By conducting interactive forums in colleges, community centres, and semi-urban localities, the Trust empowers citizens to navigate legal disputes with dignity and self-assurance.</p>
+          </div>
+          <nav class="article-full__nav">
+            <a href="/article?a=grassroots-community-aid-support" class="article-nav-btn">
+              <span class="article-nav-btn__dir">&larr; Previous</span>
+              <span class="article-nav-btn__title">Grassroots Community Aid &amp; Support</span>
+            </a>
+            <a href="/article?a=youth-advocacy-mentorship-bootcamps" class="article-nav-btn article-nav-btn--next">
+              <span class="article-nav-btn__dir">Next &rarr;</span>
+              <span class="article-nav-btn__title">Youth Advocacy &amp; Mentorship Bootcamps</span>
+            </a>
+          </nav>
+        </article>
       </div>
     </div>
   </section>
@@ -125,21 +168,24 @@
         <ul class="footer-links">
           <li><a href="index.html#about">About the Trust</a></li>
           <li><a href="index.html#pillars">The Four Pillars</a></li>
-          <li><a href="index.html#founder">Founder</a></li>
+          <li><a href="index.html#founder">Founder &amp; Leadership</a></li>
+          <li><a href="index.html#team">Our Team</a></li>
         </ul>
       </div>
       <div class="footer-col">
         <h4>Engage</h4>
         <ul class="footer-links">
-          <li><a href="articles.html">Articles</a></li>
-          <li><a href="gallery.html">Gallery</a></li>
-          <li><a href="index.html#testimonials">Client Feedback</a></li>
-          <li><a href="index.html#admissions">Apply / Enquire</a></li>
+          <li><a href="/articles">Legal Articles &amp; Insights</a></li>
+          <li><a href="/gallery">Institutional Gallery</a></li>
+          <li><a href="index.html#testimonials">Student Feedback</a></li>
+          <li><a href="index.html#admissions">Enrollment &amp; Inquiries</a></li>
         </ul>
       </div>
       <div class="footer-col">
         <h4>Contact</h4>
         <ul class="footer-links">
+          <li><a href="index.html#contact">Chambers &amp; Office</a></li>
+          <li><a href="index.html#faq">Frequently Asked Questions</a></li>
           <li><a href="mailto:contact@safarlegaltrust.org" id="footerEmail">contact@safarlegaltrust.org</a></li>
           <li><a href="tel:+919876543210" id="footerPhone">+91 98765 43210</a></li>
           <li><span id="footerAddress">New Delhi, India</span></li>

@@ -29,7 +29,7 @@
       { title: 'Social Impact', description: 'Bridging the gap between law and society' }
     ],
     settings: {
-      title: 'Safar Legal Trust | Legal Education & Mentorship',
+      title: 'Safar Legal Trust | Legal Awareness & Education in India',
       email: 'contact@safarlegaltrust.org',
       phone: '+91 98765 43210',
       address: 'New Delhi, India',
@@ -598,8 +598,8 @@
     const n = detailItems.length;
     const p = host.querySelector('[data-nav="prev"]');
     const nx = host.querySelector('[data-nav="next"]');
-    if (p) p.addEventListener('click', () => paintArticle((detailIdx - 1 + n) % n, true));
-    if (nx) nx.addEventListener('click', () => paintArticle((detailIdx + 1) % n, true));
+    if (p) p.addEventListener('click', (e) => { e.preventDefault(); paintArticle((detailIdx - 1 + n) % n, true); });
+    if (nx) nx.addEventListener('click', (e) => { e.preventDefault(); paintArticle((detailIdx + 1) % n, true); });
   }
   // Entry point (called from renderContent): resolve which article the URL
   // asks for and render it. No-op on pages without #articleDetail.
@@ -618,7 +618,14 @@
     if (idx < 0) { const nn = parseInt(params.get('id'), 10); if (!isNaN(nn) && detailItems[nn]) idx = nn; }
     if (idx < 0) idx = 0;
     if (detailIdx === -1) {
-      paintArticle(idx, false); // first paint — fade in
+      const alreadyRendered = host.querySelector('.article-full');
+      if (alreadyRendered) {
+        detailIdx = idx;
+        host.style.opacity = '1';
+        wireDetailNav();
+      } else {
+        paintArticle(idx, false); // first paint — fade in
+      }
     } else {
       // Server-sync refresh: swap content in place without a fade flicker.
       detailIdx = idx;

@@ -63,16 +63,24 @@
   "cases": [
     {
       "title": "Pan-India Legal Literacy Drive",
-      "description": "Conducted interactive workshops empowering citizens and students with fundamental constitutional and statutory rights.",
-      "featured": false
+      "tag": "Constitutional Literacy",
+      "date": "2026-01-15",
+      "featured": true,
+      "description": "Constitutional literacy is the bedrock of an empowered democracy. Across India, millions of citizens interact daily with administrative and judicial systems without a working knowledge of their fundamental rights under Part III of the Constitution of India. Safar Legal Trust initiates pan-India legal literacy workshops designed to translate statutory remedies into clear, actionable knowledge.\n\nThese outreach sessions demystify essential legal procedures, including First Information Reports (FIRs), consumer complaint mechanisms under the Consumer Protection Act, right to information applications, and remedies available under Article 226 and Article 32. By conducting interactive forums in colleges, community centres, and semi-urban localities, the Trust empowers citizens to navigate legal disputes with dignity and self-assurance."
     },
     {
       "title": "Youth Advocacy & Mentorship Bootcamps",
-      "description": "Mentored law graduates and students in trial advocacy, procedural drafting, and ethical litigation practice."
+      "tag": "Advocacy & Mentorship",
+      "date": "2026-02-10",
+      "featured": true,
+      "description": "The transition from academic law lecture halls to practical courtroom litigation represents one of the steepest learning curves for young advocates. Safar Legal Trust’s Chamber Mentorship and Trial Advocacy Bootcamps bridge this gap through immersive clinical training, pleadings review, and real-time courtroom observation.\n\nParticipants receive structured guidance on procedural drafting, including writ petitions, civil plaints, bail applications, and interlocutory motions under the Code of Civil Procedure and Code of Criminal Procedure. Beyond technical drafting, the program emphasizes courtroom decorum, professional litigation ethics, client counseling, and effective oral argumentation, establishing a solid foundation for first-generation litigators."
     },
     {
       "title": "Grassroots Community Aid & Support",
-      "description": "Assisted underprivileged families in accessing legal aid and understanding administrative dispute mechanisms."
+      "tag": "Legal Aid & Access",
+      "date": "2026-03-05",
+      "featured": true,
+      "description": "Access to timely legal guidance should not depend on economic privilege. Guided by the constitutional mandate of Article 39A, Safar Legal Trust connects underprivileged families and marginalized individuals with structured legal guidance and institutional legal aid pathways.\n\nOur community aid initiatives assist families in understanding public welfare entitlements, tenancy disputes, employment rights, and dispute resolution through Lok Adalats and District Legal Services Authorities (DLSA). Through collaborative community roundtables, the Trust fosters trust in the rule of law and provides compassionate, ethical support to citizens in need of justice."
     }
   ],
   "articles": [
@@ -170,7 +178,7 @@
     }
   ],
   "settings": {
-    "title": "Safar Legal Trust | Legal Education & Mentorship",
+    "title": "Safar Legal Trust | Legal Awareness & Education in India",
     "email": "contact@safarlegaltrust.org",
     "phone": "+91 98765 43210",
     "address": "New Delhi, India",
