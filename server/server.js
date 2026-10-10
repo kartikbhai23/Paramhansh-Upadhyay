@@ -418,6 +418,12 @@ app.get('/robots.txt', function (req, res) {
   res.setHeader('Cache-Control', 'public, max-age=86400'); // 24 h
   res.sendFile(path.join(ROOT, 'robots.txt'), function (err) { if (err) res.status(404).end(); });
 });
+// llms.txt — plain-text site description for AI language models (emerging standard)
+app.get('/llms.txt', function (req, res) {
+  res.setHeader('Content-Type', 'text/plain; charset=utf-8');
+  res.setHeader('Cache-Control', 'public, max-age=86400'); // 24 h
+  res.sendFile(path.join(ROOT, 'llms.txt'), function (err) { if (err) res.status(404).end(); });
+});
 app.get(['/articles', '/articles.html'], function (req, res) {
   res.sendFile(path.join(ROOT, 'articles.html'));
 });

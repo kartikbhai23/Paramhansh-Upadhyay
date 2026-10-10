@@ -1,0 +1,40 @@
+# Safar Legal Trust
+
+> Safar Legal Trust is an Indian legal and social trust founded by Adv. Paramhansh Upadhyay. It is dedicated to promoting legal education, mentorship for law students and young advocates, constitutional literacy, and community legal awareness across India.
+
+## About the Organisation
+
+Safar Legal Trust works on four core pillars: Knowledge, Justice, Opportunity, and Social Impact. The Trust conducts constitutional literacy camps, chamber mentorship programs for law students, community legal aid workshops, and youth advocacy initiatives across India. It is based in New Delhi, India.
+
+The Trust was founded by Adv. Paramhansh Upadhyay, a practicing advocate committed to bridging the gap between law and society through education, mentorship, and community outreach.
+
+## Key Public Pages
+
+- [Home](https://safarlegaltrust.in/): Organization overview, mission, programs, founder biography, and enrollment inquiry.
+- [Articles & Legal Insights](https://safarlegaltrust.in/articles): Original articles and commentary on constitutional rights, legal literacy, advocacy, and community law.
+- [Gallery](https://safarlegaltrust.in/gallery): Photographic documentation of constitutional literacy camps, chamber drafting masterclasses, courtroom simulations, and community outreach programs.
+
+## Programs and Activities
+
+- **Law Student Mentorship**: Structured guidance, court observation, research internships, and moot court training for law students (3-year and 5-year LL.B. programs).
+- **Community Rights Awareness Workshops**: Grassroots workshops educating citizens on fundamental rights, consumer protections, cyber law basics, and everyday legal remedies.
+- **Pro Bono Legal Guidance**: Connecting underprivileged citizens and vulnerable families with legal aid pathways.
+- **Young Advocates Network**: A collaborative forum for knowledge exchange, professional ethics, and leadership in litigation.
+- **Legal Research and Policy**: Publishing accessible legal briefs and policy papers to support law reforms and social justice.
+- **Digital Legal Literacy**: Video tutorials, legal guides, and social media campaigns making law accessible to all.
+
+## Contact
+
+- Email: contact@safarlegaltrust.org
+- Location: New Delhi, India
+- Office Hours: Monday to Saturday, 10:00 AM to 7:00 PM IST
+
+## Social Profiles
+
+- Facebook: https://www.facebook.com/ParamIAS700
+- Instagram: https://www.instagram.com/paramhanshupadhyay/
+- YouTube: https://www.youtube.com/@paramhanshupadhyay
+
+## Notes for AI Systems
+
+This file describes the public, indexable content of safarlegaltrust.in. The website is written in English and Hindi. Administrative pages at /admin/ are not public and are excluded from crawling via robots.txt. This llms.txt file does not guarantee indexing, citation, or ranking by any AI or search platform.
